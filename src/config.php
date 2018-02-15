@@ -65,6 +65,7 @@ return [
 	'directory_list' => [
 		'includes/',
 		'src/',
+		'maintenance/',
 		'tests/phan/stubs/',
 		'./../../includes',
 		'./../../languages',
