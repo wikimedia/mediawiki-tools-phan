@@ -290,6 +290,7 @@ return [
 	 * to this black-list to inhibit them from being reported.
 	 */
 	'suppress_issue_types' => [
+		'PhanDeprecatedFunction',
 	],
 
 	/**
