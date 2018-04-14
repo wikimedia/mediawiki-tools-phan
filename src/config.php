@@ -71,6 +71,7 @@ return [
 		'./../../languages',
 		'./../../maintenance',
 		'./../../vendor',
+		'./../../tests/phan/stubs',
 	],
 
 	/**
@@ -94,6 +95,7 @@ return [
 		'./../../languages',
 		'./../../maintenance',
 		'./../../vendor',
+		'./../../tests/phan/stubs',
 	],
 
 	/**
