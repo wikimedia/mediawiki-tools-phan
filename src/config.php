@@ -298,6 +298,11 @@ return [
 	 */
 	'suppress_issue_types' => [
 		'PhanDeprecatedFunction',
+		'PhanDeprecatedClass',
+		'PhanDeprecatedFunctionInternal',
+		'PhanDeprecatedInterface',
+		'PhanDeprecatedProperty',
+		'PhanDeprecatedTrait',
 		'PhanUnreferencedUseNormal',
 	],
 
