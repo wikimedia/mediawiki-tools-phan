@@ -21,6 +21,11 @@
 // If xdebug is enabled, we need to increase the nesting level for phan
 ini_set( 'xdebug.max_nesting_level', 1000 );
 
+$IP = getenv( 'MW_INSTALL_PATH' ) !== false
+	// Replace \\ by / for windows users to let exclude work correctly
+	? str_replace( '\\', '/', getenv( 'MW_INSTALL_PATH' ) )
+	: './../..';
+
 /**
  * This configuration will be read and overlayed on top of the
  * default configuration. Command line arguments will be applied
@@ -67,11 +72,11 @@ return [
 		'src/',
 		'maintenance/',
 		'tests/phan/stubs/',
-		'./../../includes',
-		'./../../languages',
-		'./../../maintenance',
-		'./../../vendor',
-		'./../../tests/phan/stubs',
+		$IP . '/includes',
+		$IP . '/languages',
+		$IP . '/maintenance',
+		$IP . '/vendor',
+		$IP . '/tests/phan/stubs',
 	],
 
 	/**
@@ -91,11 +96,11 @@ return [
 	 */
 	"exclude_analysis_directory_list" => [
 		'tests/phan/stubs/',
-		'./../../includes',
-		'./../../languages',
-		'./../../maintenance',
-		'./../../vendor',
-		'./../../tests/phan/stubs',
+		$IP . '/includes',
+		$IP . '/languages',
+		$IP . '/maintenance',
+		$IP . '/vendor',
+		$IP . '/tests/phan/stubs',
 	],
 
 	/**
