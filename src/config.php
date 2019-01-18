@@ -24,7 +24,7 @@ ini_set( 'xdebug.max_nesting_level', 1000 );
 $IP = getenv( 'MW_INSTALL_PATH' ) !== false
 	// Replace \\ by / for windows users to let exclude work correctly
 	? str_replace( '\\', '/', getenv( 'MW_INSTALL_PATH' ) )
-	: './../..';
+	: '../..';
 
 /**
  * This configuration will be read and overlayed on top of the
