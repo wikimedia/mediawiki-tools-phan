@@ -32,5 +32,8 @@
 			"phpcbf",
 			"minus-x fix ."
 		]
+	},
+	"extra": {
+		"phan": "1.2.4"
 	}
 }
