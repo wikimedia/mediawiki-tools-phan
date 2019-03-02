@@ -333,5 +333,18 @@ return [
 
 	// A list of plugin files to execute
 	'plugins' => [
+		'PregRegexCheckerPlugin',
+		'UnusedSuppressionPlugin',
+		'DuplicateExpressionPlugin'
+	],
+	'plugin_config' => [
+		'unused_suppression_ignore_list' => [
+			// Suppress issues from phan-taint-check-plugin
+			// which runs in a separate process
+			'SecurityCheck-DoubleEscaped',
+			'SecurityCheck-OTHER',
+			'SecurityCheck-SQLInjection',
+			'SecurityCheck-XSS',
+		],
 	],
 ];
