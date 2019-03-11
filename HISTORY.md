@@ -1,5 +1,10 @@
 # MediaWiki-Phan-Config release history #
 
+## 0.5.0 / 2019-03-10 ##
+* Add RegexChecker, UnusedSuppression and DuplicateExpression plugins
+  (Daimona Eaytoy)
+* Upgrade Phan to 1.2.6 (Kunal Mehta & Daimona Eaytoy)
+
 ## 0.4.0 / 2019-02-23 ##
 * Add phan version to composer.json (Kunal Mehta)
 * build: Updating mediawiki/minus-x to 0.3.1 (Umherirrender)
