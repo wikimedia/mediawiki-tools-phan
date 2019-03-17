@@ -71,11 +71,13 @@ return [
 		'includes/',
 		'src/',
 		'maintenance/',
-		'tests/phan/stubs/',
+		'.phan/stubs/',
 		$IP . '/includes',
 		$IP . '/languages',
 		$IP . '/maintenance',
 		$IP . '/vendor',
+		$IP . '/.phan/stubs/',
+		// TODO: Remove after migration of mediawiki/core to new phan
 		$IP . '/tests/phan/stubs',
 	],
 
@@ -95,11 +97,13 @@ return [
 	 * files.
 	 */
 	"exclude_analysis_directory_list" => [
-		'tests/phan/stubs/',
+		'.phan/stubs/',
 		$IP . '/includes',
 		$IP . '/languages',
 		$IP . '/maintenance',
 		$IP . '/vendor',
+		$IP . '/.phan/stubs/',
+		// TODO: Remove after migration of mediawiki/core to new phan
 		$IP . '/tests/phan/stubs',
 	],
 
