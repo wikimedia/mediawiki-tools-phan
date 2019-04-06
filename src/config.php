@@ -67,7 +67,7 @@ return [
 	 * Thus, both first-party and third-party code being used by
 	 * your application should be included in this list.
 	 */
-	'directory_list' => [
+	'directory_list' => array_filter( [
 		'includes/',
 		'src/',
 		'maintenance/',
@@ -77,7 +77,7 @@ return [
 		$IP . '/maintenance',
 		$IP . '/vendor',
 		$IP . '/.phan/stubs/',
-	],
+	], 'file_exists' ),
 
 	/**
 	 * A file list that defines files that will be excluded
