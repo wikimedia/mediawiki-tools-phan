@@ -303,6 +303,7 @@ return [
 	'suppress_issue_types' => [
 		'PhanDeprecatedFunction',
 		'PhanDeprecatedClass',
+		'PhanDeprecatedClassConstant',
 		'PhanDeprecatedFunctionInternal',
 		'PhanDeprecatedInterface',
 		'PhanDeprecatedProperty',
