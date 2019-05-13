@@ -1,5 +1,11 @@
 # MediaWiki-Phan-Config release history #
 
+## 0.6.0 / 2019-05-13 ##
+* Rename tests/phan/stubs in dir list to new location (Umherirrender)
+* Upgrade phan to 1.2.7 (Kunal Mehta)
+* Upgrade phan to 1.3.2 (Daimona Eaytoy)
+* Upgrade phan to 1.3.4 (Umherirrender)
+
 ## 0.5.0 / 2019-03-10 ##
 * Add RegexChecker, UnusedSuppression and DuplicateExpression plugins
   (Daimona Eaytoy)
