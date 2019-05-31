@@ -336,6 +336,9 @@ return [
 	 */
 	'generic_types_enabled' => true,
 
+	// Enable class_alias() support
+	'enable_class_alias_support' => true,
+
 	// A list of plugin files to execute
 	'plugins' => [
 		'PregRegexCheckerPlugin',
