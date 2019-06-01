@@ -77,8 +77,6 @@ return [
 		$IP . '/maintenance',
 		$IP . '/vendor',
 		$IP . '/.phan/stubs/',
-		// TODO: Remove after migration of mediawiki/core to new phan
-		$IP . '/tests/phan/stubs',
 	],
 
 	/**
@@ -103,8 +101,6 @@ return [
 		$IP . '/maintenance',
 		$IP . '/vendor',
 		$IP . '/.phan/stubs/',
-		// TODO: Remove after migration of mediawiki/core to new phan
-		$IP . '/tests/phan/stubs',
 	],
 
 	/**
