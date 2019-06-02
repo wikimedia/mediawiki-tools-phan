@@ -1,5 +1,8 @@
 # MediaWiki-Phan-Config release history #
 
+## 0.6.1 / 2019-06-01 ##
+* Enable enable_class_alias_support (Max Semenik)
+
 ## 0.6.0 / 2019-05-13 ##
 * Rename tests/phan/stubs in dir list to new location (Umherirrender)
 * Upgrade phan to 1.2.7 (Kunal Mehta)
