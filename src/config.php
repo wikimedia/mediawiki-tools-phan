@@ -177,19 +177,19 @@ return [
 
 	/**
 	 * Allow null to be cast as any type and for any
-	 * type to be cast to null. Setting this to false
+	 * type to be cast to null. Setting this to true
 	 * will cut down on false positives.
 	 */
-	'null_casts_as_any_type' => true,
+	'null_casts_as_any_type' => false,
 
 	/**
 	 * If enabled, scalars (int, float, bool, string, null)
 	 * are treated as if they can cast to each other.
 	 *
 	 * MediaWiki is pretty lax and uses many scalar
-	 * types interchangably.
+	 * types interchangably, hence single repos may choose to set this to true.
 	 */
-	'scalar_implicit_cast' => true,
+	'scalar_implicit_cast' => false,
 
 	/**
 	 * If true, seemingly undeclared variables in the global
