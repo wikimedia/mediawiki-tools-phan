@@ -52,7 +52,8 @@ return [
 	 * project. directory_list won't find .inc files so
 	 * we augment it here.
 	 */
-	'file_list' => defined( 'MSG_EOR' ) ? [] : [ __DIR__ . '/stubs/sockets.windows.php' ],
+	'file_list' => [
+	],
 
 	/**
 	 * A list of directories that should be parsed for class and
@@ -265,6 +266,13 @@ return [
 		'PhanDeprecatedProperty',
 		'PhanDeprecatedTrait',
 		'PhanUnreferencedUseNormal',
+
+		// https://github.com/phan/phan/issues/3420
+		'PhanAccessClassConstantInternal',
+		'PhanAccessClassInternal',
+		'PhanAccessConstantInternal',
+		'PhanAccessMethodInternal',
+		'PhanAccessPropertyInternal',
 	],
 
 	/**
