@@ -57,8 +57,7 @@ return [
 	 * project. directory_list won't find .inc files so
 	 * we augment it here.
 	 */
-	'file_list' => [
-	],
+	'file_list' => defined( 'MSG_EOR' ) ? [] : [ __DIR__ . '/stubs/sockets.windows.php' ],
 
 	/**
 	 * A list of directories that should be parsed for class and
