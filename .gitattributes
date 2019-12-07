@@ -4,6 +4,7 @@
 .gitreview export-ignore
 .travis.yml export-ignore
 Doxyfile export-ignore
+composer.json export-ignore
 .phpcs.xml export-ignore
 phpunit.xml.dist export-ignore
 tests/ export-ignore
