@@ -105,6 +105,32 @@ return [
 	],
 
 	/**
+	 * A regular expression to match files to be excluded
+	 * from parsing and analysis and will not be read at all.
+	 *
+	 * This is useful for excluding groups of test or example
+	 * directories/files, unanalyzable files, or files that
+	 * can't be removed for whatever reason.
+	 * (e.g. '@Test\.php$@', or '@vendor/.*\/(tests|Tests)/@')
+	 */
+	'exclude_file_regex' =>
+		'@vendor/(' .
+			// Exclude known dev dependencies
+			'(' . implode( '|', [
+				'jakub-onderka/php-console-color',
+				'jakub-onderka/php-console-highlighter',
+				'jakub-onderka/php-parallel-lint',
+				'mediawiki/mediawiki-codesniffer',
+				'phan/phan',
+				'phpunit/php-code-coverage',
+				'squizlabs/php_codesniffer',
+			] ) . ')' .
+		'|' .
+			// Also exclude tests folder from dependencies
+			'.*/[Tt]ests?' .
+		')/@',
+
+	/**
 	 * Backwards Compatibility Checking. This is slow
 	 * and expensive, but you should consider running
 	 * it before upgrading your version of PHP to a
