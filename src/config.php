@@ -117,10 +117,12 @@ return [
 		'@vendor/(' .
 			// Exclude known dev dependencies
 			'(' . implode( '|', [
+				'composer/installers',
 				'jakub-onderka/php-console-color',
 				'jakub-onderka/php-console-highlighter',
 				'jakub-onderka/php-parallel-lint',
 				'mediawiki/mediawiki-codesniffer',
+				'microsoft/tolerant-php-parser',
 				'phan/phan',
 				'phpunit/php-code-coverage',
 				'squizlabs/php_codesniffer',
