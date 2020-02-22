@@ -50,7 +50,7 @@ $VP = getenv( 'MW_VENDOR_PATH' ) !== false
  * of the phan executable or a path passed in via the CLI
  * '-d' flag.
  */
-return [
+$baseCfg = [
 	/**
 	 * A list of individual files to include in analysis
 	 * with a path relative to the root directory of the
@@ -339,18 +339,9 @@ return [
 	'plugins' => [
 		'PregRegexCheckerPlugin',
 		'UnusedSuppressionPlugin',
-		'DuplicateExpressionPlugin'
+		'DuplicateExpressionPlugin',
 	],
-	'plugin_config' => [
-		'unused_suppression_ignore_list' => [
-			// Suppress issues from phan-taint-check-plugin
-			// which runs in a separate process
-			'SecurityCheck-DoubleEscaped',
-			'SecurityCheck-OTHER',
-			'SecurityCheck-SQLInjection',
-			'SecurityCheck-XSS',
-		],
-	],
+	'plugin_config' => [],
 
 	/**
 	 * Set to true in order to attempt to detect redundant and impossible conditions.
@@ -360,3 +351,15 @@ return [
 	 */
 	'redundant_condition_detection' => true
 ];
+
+// Hacky variable to quickly disable taint-check if something explodes.
+if ( !isset( $disableTaintCheck ) ) {
+	$baseCfg['plugins'][] =
+		"$VP/vendor/mediawiki/phan-taint-check-plugin/MediaWikiSecurityCheckPlugin.php";
+	// Taint-check specific settings. NOTE: don't remove these lines, even if they duplicate some of
+	// the settings above. taint-check may fail hard if one of these settings goes missing.
+	$baseCfg['quick_mode'] = false;
+	$baseCfg['record_variable_context_and_scope'] = true;
+	$baseCfg['suppress_issue_types'][] = 'SecurityCheck-LikelyFalsePositive';
+}
+return $baseCfg;
