@@ -1,5 +1,47 @@
 # MediaWiki-Phan-Config release history #
 
+## Forthcoming ##
+* Require taint-check (Daimona Eaytoy)
+* Upgrade phan to 2.6.1 (Daimona Eaytoy)
+* Update PHPUnit to 8.5 (Umherirrender)
+* Upgrade phan to 2.5.0 (Daimona Eaytoy)
+
+## 0.9.2 / 2020-02-13 ##
+* Upgrade phan to 2.4.9 (Daimona Eaytoy)
+* build: Updating composer dependencies (libraryupgrader)
+
+## 0.9.1 / 2020-01-24 ##
+* Upgrade phan to 2.4.7 (Daimona Eaytoy)
+* Add more dev dependencies to the list of excluded files (Daimona Eaytoy)
+* Set `exclude_file_regex` to exclude tests and dep devs from vendor folder (Umherirrender)
+* Drop Travis testing, no extra advantage over Wikimedia CI and runs post-merge anyway (James D. Forrester)
+* build: Updating mediawiki/mediawiki-codesniffer to 29.0.0 (libraryupgrader)
+* Update phan/phan to 2.4.6 (Umherirrender)
+* Ignore composer.json on export (Umherirrender)
+
+## 0.9.0 / 2019-12-07 ##
+* Update phan/phan to 2.4.4 (Umherirrender)
+* Disable implicit scalar and null casts (Daimona Eaytoy)
+* Restore a line removed incidentally (Daimona Eaytoy)
+* Add `MW_VENDOR_PATH` to set up path of mediawiki/vendor clone (Umherirrender)
+* Disable `PhanAccess*Internal` (Aryeh Gregor)
+* build: Upgrade mediawiki-codesniffer to v28.0.0 (James D. Forrester)
+* Add `MSG_EOR` under windows as stub (Umherirrender)
+
+## 0.8.0 / 2019-10-09 ##
+* Move phan/phan to composer require and upgrade it (Daimona Eaytoy)
+* Really require PHP 7.2+ (Daimona Eaytoy)
+
+## 0.7.1 / 2019-09-01 ##
+* Restore PHP5.6 requirement (Daimona Eaytoy)
+
+## 0.7.0 / 2019-09-01 ##
+* Upgrade phan to 2.2.11 (Daimona Eaytoy)
+* Upgrade phan, remove old config settings (Daimona Eaytoy)
+* build: Updating mediawiki/mediawiki-codesniffer to 26.0.0 (libraryupgrader)
+* Suppress warnings about unknown dirs from 'directory_list' (Umherirrender)
+* Removed old tests/phan/stubs for core from directory list (Umherirrender)
+
 ## 0.6.1 / 2019-06-01 ##
 * Enable enable_class_alias_support (Max Semenik)
 
