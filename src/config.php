@@ -354,8 +354,11 @@ $baseCfg = [
 
 // Hacky variable to quickly disable taint-check if something explodes.
 if ( !isset( $disableTaintCheck ) ) {
-	$baseCfg['plugins'][] =
-		"$VP/vendor/mediawiki/phan-taint-check-plugin/MediaWikiSecurityCheckPlugin.php";
+	$taintCheckPath = __DIR__ . "/../../phan-taint-check-plugin/MediaWikiSecurityCheckPlugin.php";
+	if ( !file_exists( $taintCheckPath ) ) {
+		$taintCheckPath = "$VP/vendor/mediawiki/phan-taint-check-plugin/MediaWikiSecurityCheckPlugin.php";
+	}
+	$baseCfg['plugins'][] = $taintCheckPath;
 	// Taint-check specific settings. NOTE: don't remove these lines, even if they duplicate some of
 	// the settings above. taint-check may fail hard if one of these settings goes missing.
 	$baseCfg['quick_mode'] = false;
