@@ -1,5 +1,8 @@
 # MediaWiki-Phan-Config release history #
 
+## 0.10.1 / 2020-03-26 ##
+* Fix path for taint-check (Daimona Eaytoy)
+
 ## 0.10.0 / 2020-03-26 ##
 * Require taint-check (Daimona Eaytoy)
 * Upgrade phan to 2.6.1 (Daimona Eaytoy)
