@@ -1,6 +1,6 @@
 # MediaWiki-Phan-Config release history #
 
-## Forthcoming ##
+## 0.10.0 / 2020-03-26 ##
 * Require taint-check (Daimona Eaytoy)
 * Upgrade phan to 2.6.1 (Daimona Eaytoy)
 * Update PHPUnit to 8.5 (Umherirrender)
