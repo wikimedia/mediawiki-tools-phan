@@ -12,7 +12,7 @@
 	"require": {
 		"php": ">=7.2.0",
 		"phan/phan": "2.6.1",
-		"mediawiki/phan-taint-check-plugin": "3.0.1"
+		"mediawiki/phan-taint-check-plugin": "3.0.2"
 	},
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "1.0.0",

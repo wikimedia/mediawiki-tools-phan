@@ -353,6 +353,8 @@ $baseCfg = [
 ];
 
 // Hacky variable to quickly disable taint-check if something explodes.
+// @note This is **NOT** a stable feature. It's only for BC and could be removed or changed
+// without prior notice.
 if ( !isset( $disableTaintCheck ) ) {
 	$taintCheckPath = __DIR__ . "/../../phan-taint-check-plugin/MediaWikiSecurityCheckPlugin.php";
 	if ( !file_exists( $taintCheckPath ) ) {
@@ -363,6 +365,22 @@ if ( !isset( $disableTaintCheck ) ) {
 	// the settings above. taint-check may fail hard if one of these settings goes missing.
 	$baseCfg['quick_mode'] = false;
 	$baseCfg['record_variable_context_and_scope'] = true;
-	$baseCfg['suppress_issue_types'][] = 'SecurityCheck-LikelyFalsePositive';
+	$baseCfg['suppress_issue_types'] = array_merge(
+		$baseCfg['suppress_issue_types'],
+		[
+			// We obviously don't want to report false positives
+			'SecurityCheck-LikelyFalsePositive',
+			// This one still has a lot of false positives
+			'SecurityCheck-PHPSerializeInjection',
+		]
+	);
+} else {
+	// BC code to avoid failures in case of emergency when taint-check is disabled.
+	$baseCfg['plugin_config']['unused_suppression_ignore_list'] = [
+		'SecurityCheck-DoubleEscaped',
+		'SecurityCheck-OTHER',
+		'SecurityCheck-SQLInjection',
+		'SecurityCheck-XSS',
+	];
 }
 return $baseCfg;
