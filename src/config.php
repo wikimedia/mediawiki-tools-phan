@@ -106,8 +106,8 @@ $baseCfg = $baseCfg
 	] )
 	->setExcludeFileRegex(
 		'@vendor/(' .
-		// Exclude known dev dependencies
 		'(' . implode( '|', [
+			// Exclude known dev dependencies
 			'composer/installers',
 			'php-parallel-lint/php-console-color',
 			'php-parallel-lint/php-console-highlighter',
@@ -117,6 +117,8 @@ $baseCfg = $baseCfg
 			'phan/phan',
 			'phpunit/php-code-coverage',
 			'squizlabs/php_codesniffer',
+			// Exclude stubs used in libraries
+			'[^/]+/[^/]+/\.phan',
 		] ) . ')' .
 		'|' .
 		// Also exclude tests folder from dependencies
