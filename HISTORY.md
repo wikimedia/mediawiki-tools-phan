@@ -1,6 +1,7 @@
 # MediaWiki-Phan-Config release history #
 
-## Forthcoming ##
+## 0.10.2 / 2020-04-15 ##
+* Adjust taint-check settings, require new version (Daimona Eaytoy)
 * build: Upgrade mediawiki-codesniffer from v29.0.0 to v30.0.0 (James D. Forrester)
 
 ## 0.10.1 / 2020-03-26 ##
