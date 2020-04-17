@@ -34,5 +34,8 @@
 			"minus-x fix .",
 			"phpcbf"
 		]
+	},
+	"autoload": {
+		"psr-4": { "MediaWikiPhanConfig\\": "src/" }
 	}
 }
