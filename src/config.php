@@ -28,6 +28,9 @@ $VP = getenv( 'MW_VENDOR_PATH' ) !== false
 	? str_replace( '\\', '/', getenv( 'MW_VENDOR_PATH' ) )
 	: $IP;
 
+// Replace \\ by / for windows users to let exclude work correctly
+$DIR = str_replace( '\\', '/', __DIR__ );
+
 /**
  * This configuration will be read and overlayed on top of the
  * default configuration. Command line arguments will be applied
@@ -57,7 +60,7 @@ $baseCfg = [
 	 * project. directory_list won't find .inc files so
 	 * we augment it here.
 	 */
-	'file_list' => defined( 'MSG_EOR' ) ? [] : [ __DIR__ . '/stubs/sockets.windows.php' ],
+	'file_list' => defined( 'MSG_EOR' ) ? [] : [ $DIR . '/stubs/sockets.windows.php' ],
 
 	/**
 	 * A list of directories that should be parsed for class and
@@ -102,6 +105,7 @@ $baseCfg = [
 		$IP . '/maintenance',
 		$IP . '/.phan/stubs/',
 		$VP . '/vendor',
+		$DIR . '/stubs/',
 	],
 
 	/**
@@ -356,7 +360,7 @@ $baseCfg = [
 // @note This is **NOT** a stable feature. It's only for BC and could be removed or changed
 // without prior notice.
 if ( !isset( $disableTaintCheck ) ) {
-	$taintCheckPath = __DIR__ . "/../../phan-taint-check-plugin/MediaWikiSecurityCheckPlugin.php";
+	$taintCheckPath = $DIR . "/../../phan-taint-check-plugin/MediaWikiSecurityCheckPlugin.php";
 	if ( !file_exists( $taintCheckPath ) ) {
 		$taintCheckPath = "$VP/vendor/mediawiki/phan-taint-check-plugin/MediaWikiSecurityCheckPlugin.php";
 	}
