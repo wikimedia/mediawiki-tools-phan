@@ -223,10 +223,10 @@ class ConfigBuilder {
 	}
 
 	/**
-	 * @param array ...$globals [ 'global_name' => 'union_type' ]
+	 * @param array $globals [ 'global_name' => 'union_type' ]
 	 * @return $this
 	 */
-	public function addGlobalsWithTypes( array ...$globals ) : self {
+	public function addGlobalsWithTypes( array $globals ) : self {
 		$this->options['globals_type_map'] = array_merge(
 			$this->options['globals_type_map'] ?? [],
 			$globals
