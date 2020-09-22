@@ -33,6 +33,15 @@ class ConfigBuilder {
 	}
 
 	/**
+	 * @todo Use in more options
+	 * @param array $dirs
+	 * @return array
+	 */
+	private function filterDirs( array $dirs ) : array {
+		return array_filter( $dirs, 'file_exists' );
+	}
+
+	/**
 	 * @param array $list
 	 * @return $this
 	 */
@@ -88,7 +97,7 @@ class ConfigBuilder {
 	 * @return $this
 	 */
 	public function setDirectoryList( array $list ) : self {
-		$this->options['directory_list'] = $list;
+		$this->options['directory_list'] = $this->filterDirs( $list );
 		return $this;
 	}
 
