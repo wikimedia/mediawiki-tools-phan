@@ -1,5 +1,16 @@
 # MediaWiki-Phan-Config release history #
 
+## master / unreleased
+* Fix exclude of stubs from this repo (Umherirrender)
+* build: Updating mediawiki/mediawiki-codesniffer to 31.0.0 (libraryupgrader)
+* build: update php-parallel-lint/php-console-highlighter to 0.5.0 (libraryupgrader)
+* build: update php-parallel-lint/php-parallel-lint to 1.2.0 (libraryupgrader)
+* Add a ConfigBuilder class to configure phan (Daimona Eaytoy)
+* Require taint-check 3.0.3, up from 3.0.2 (James D. Forrester)
+* Remove option for filtering the list of directories (Daimona Eaytoy)
+* build: Updating ockcyp/covers-validator to 1.2.0 (libraryupgrader)
+* build: update .gitreview to point to mediawiki/tools/phan (Antoine Musso)
+
 ## 0.10.2 / 2020-04-15 ##
 * Adjust taint-check settings, require new version (Daimona Eaytoy)
 * build: Upgrade mediawiki-codesniffer from v29.0.0 to v30.0.0 (James D. Forrester)
