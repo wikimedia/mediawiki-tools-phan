@@ -1,5 +1,5 @@
 [gerrit]
 host=gerrit.wikimedia.org
 port=29418
-project=mediawiki/libs/MediaWikiPhanConfig.git
+project=mediawiki/tools/phan.git
 track=1
