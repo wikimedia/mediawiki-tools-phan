@@ -1,5 +1,11 @@
 # MediaWiki-Phan-Config release history #
 
+## 0.10.4 / 2020-11-17
+
+Intermediate maintenance release without ConfigBuilder.
+
+* Bump taint-check to 3.0.4 (Daimona Eaytoy)
+
 ## 0.10.3 / 2020-09-22
 
 Intermediate maintenance release without ConfigBuilder.
