@@ -325,6 +325,15 @@ $baseCfg = [
 	 * (E.g. ['_FOO' => '\\FooClass', 'page' => '\\PageClass', 'userId' => 'int'])
 	 */
 	'globals_type_map' => [
+		'wgContLang' => '\\Language',
+		'wgParser' => '\\Parser',
+		'wgTitle' => '\\Title',
+		'wgMemc' => '\\BagOStuff',
+		'wgUser' => '\\User',
+		'wgConf' => '\\SiteConfiguration',
+		'wgLang' => '\\Language',
+		'wgOut' => '\\OutputPage',
+		'wgRequest' => '\\WebRequest',
 	],
 
 	// Emit issue messages with markdown formatting
