@@ -141,7 +141,18 @@ $baseCfg = $baseCfg
 		'PhanAccessPropertyInternal',
 	] )
 	->readClassAliases( true )
-	->enableRedundantConditionDetection( true );
+	->enableRedundantConditionDetection( true )
+	->addGlobalsWithTypes( [
+		'wgContLang' => '\\Language',
+		'wgParser' => '\\Parser',
+		'wgTitle' => '\\Title',
+		'wgMemc' => '\\BagOStuff',
+		'wgUser' => '\\User',
+		'wgConf' => '\\SiteConfiguration',
+		'wgLang' => '\\Language',
+		'wgOut' => '\\OutputPage',
+		'wgRequest' => '\\WebRequest',
+	] );
 
 // Hacky variable to quickly disable taint-check if something explodes.
 // @note This is **NOT** a stable feature. It's only for BC and could be removed or changed
