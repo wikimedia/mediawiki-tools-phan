@@ -139,6 +139,11 @@ $baseCfg = $baseCfg
 		'PhanAccessConstantInternal',
 		'PhanAccessMethodInternal',
 		'PhanAccessPropertyInternal',
+
+		// These are quite PHP8-specific
+		'PhanParamNameIndicatingUnused',
+		'PhanParamNameIndicatingUnusedInClosure',
+		'PhanProvidingUnusedParameter',
 	] )
 	->readClassAliases( true )
 	->enableRedundantConditionDetection( true )
