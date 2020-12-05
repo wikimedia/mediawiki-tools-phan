@@ -1,5 +1,17 @@
 # MediaWiki-Phan-Config release history #
 
+## 0.10.5 / 2020-12-05
+
+Intermediate maintenance release without ConfigBuilder.
+
+* Bump taint-check to 3.1.1 (Daimona Eaytoy)
+* Expand globals_type_map (Daimona Eaytoy)
+
+* build: Updating mediawiki/mediawiki-codesniffer to 34.0.0 (James D. Forrester)
+* build: Updating ockcyp/covers-validator to 1.3.1 (libraryupgrader)
+* build: Updating ockcyp/covers-validator to 1.3.0 (libraryupgrader)
+* build: Updating mediawiki/mediawiki-codesniffer to 33.0.0 (libraryupgrader)
+
 ## 0.10.4 / 2020-11-17
 
 Intermediate maintenance release without ConfigBuilder.
