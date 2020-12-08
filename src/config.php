@@ -58,6 +58,9 @@ $baseOptions = [
 		'DuplicateExpressionPlugin',
 	],
 	'plugin_config' => [],
+	// BC for repos not checking whether these are set
+	'file_list' => [],
+	'exclude_file_list' => [],
 ];
 
 $baseCfg = new ConfigBuilder( $IP, $baseOptions );
@@ -164,8 +167,5 @@ $baseCfg = $baseCfg
 // without prior notice.
 $baseCfg->makeTaintCheckAdjustments( !isset( $disableTaintCheck ), $DIR, $IP );
 
-if ( !$baseCfg instanceof ConfigBuilder ) {
-	// Sanity check e.g. to prevent rebases from breaking the world.
-	throw new LogicException( 'This file should return a ConfigBuilder' );
-}
-return $baseCfg;
+// BC: We're not ready to use the ConfigBuilder everywhere
+return $baseCfg->make();
