@@ -1,14 +1,38 @@
 # MediaWiki-Phan-Config release history #
 
-## master / unreleased
+## UNRELEASED
+* Add a ConfigBuilder class to configure phan (Daimona Eaytoy)
+* Remove option for filtering the list of directories (Daimona Eaytoy)
+
+## 0.10.5 / 2020-12-05
+
+Intermediate maintenance release without ConfigBuilder.
+
+* Bump taint-check to 3.1.1 (Daimona Eaytoy)
+* Expand globals_type_map (Daimona Eaytoy)
+
+* build: Updating mediawiki/mediawiki-codesniffer to 34.0.0 (James D. Forrester)
+* build: Updating ockcyp/covers-validator to 1.3.1 (libraryupgrader)
+* build: Updating ockcyp/covers-validator to 1.3.0 (libraryupgrader)
+* build: Updating mediawiki/mediawiki-codesniffer to 33.0.0 (libraryupgrader)
+
+## 0.10.4 / 2020-11-17
+
+Intermediate maintenance release without ConfigBuilder.
+
+* Bump taint-check to 3.0.4 (Daimona Eaytoy)
+
+## 0.10.3 / 2020-09-22
+
+Intermediate maintenance release without ConfigBuilder.
+
 * Fix exclude of stubs from this repo (Umherirrender)
-* build: Updating mediawiki/mediawiki-codesniffer to 31.0.0 (libraryupgrader)
+* Require taint-check 3.0.3, up from 3.0.2 (James D. Forrester)
+
+* build: update mediawiki/mediawiki-codesniffer to 31.0.0 (libraryupgrader)
 * build: update php-parallel-lint/php-console-highlighter to 0.5.0 (libraryupgrader)
 * build: update php-parallel-lint/php-parallel-lint to 1.2.0 (libraryupgrader)
-* Add a ConfigBuilder class to configure phan (Daimona Eaytoy)
-* Require taint-check 3.0.3, up from 3.0.2 (James D. Forrester)
-* Remove option for filtering the list of directories (Daimona Eaytoy)
-* build: Updating ockcyp/covers-validator to 1.2.0 (libraryupgrader)
+* build: update ockcyp/covers-validator to 1.2.0 (libraryupgrader)
 * build: update .gitreview to point to mediawiki/tools/phan (Antoine Musso)
 
 ## 0.10.2 / 2020-04-15 ##
