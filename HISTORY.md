@@ -1,8 +1,9 @@
 # MediaWiki-Phan-Config release history #
 
-## UNRELEASED
+## 0.10.6 / 2020-12-14
 * Add a ConfigBuilder class to configure phan (Daimona Eaytoy)
 * Remove option for filtering the list of directories (Daimona Eaytoy)
+* Bump taint-check to 3.2.1 and phan to 3.2.6 (Daimona Eaytoy)
 
 ## 0.10.5 / 2020-12-05
 
