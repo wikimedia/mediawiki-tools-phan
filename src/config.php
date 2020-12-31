@@ -104,9 +104,9 @@ $baseCfg = $baseCfg
 		// Exclude known dev dependencies
 		'(' . implode( '|', [
 			'composer/installers',
-			'jakub-onderka/php-console-color',
-			'jakub-onderka/php-console-highlighter',
-			'jakub-onderka/php-parallel-lint',
+			'php-parallel-lint/php-console-color',
+			'php-parallel-lint/php-console-highlighter',
+			'php-parallel-lint/php-parallel-lint',
 			'mediawiki/mediawiki-codesniffer',
 			'microsoft/tolerant-php-parser',
 			'phan/phan',
