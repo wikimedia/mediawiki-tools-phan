@@ -293,48 +293,35 @@ class ConfigBuilder {
 
 	/**
 	 * @internal
-	 * Temporary method to adjust taint-check-related settings, while preserving B/C.
 	 * This should only be used by the config file in this repo.
 	 *
-	 * @param bool $enabled Whether taint-check should be enabled
 	 * @param string $curDir
 	 * @param string $vendorPath
 	 * @return $this
 	 */
-	public function makeTaintCheckAdjustments(
-		bool $enabled,
+	public function enableTaintCheck(
 		string $curDir,
 		string $vendorPath
 	) : self {
-		if ( $enabled ) {
-			$taintCheckPath = $curDir . "/../../phan-taint-check-plugin/MediaWikiSecurityCheckPlugin.php";
-			if ( !file_exists( $taintCheckPath ) ) {
-				$taintCheckPath =
-					"$vendorPath/vendor/mediawiki/phan-taint-check-plugin/MediaWikiSecurityCheckPlugin.php";
-			}
-			$this->options['plugins'][] = $taintCheckPath;
-			// Taint-check specific settings. NOTE: don't remove these lines, even if they duplicate some of
-			// the settings above. taint-check may fail hard if one of these settings goes missing.
-			$this->options['quick_mode'] = false;
-			$this->options['record_variable_context_and_scope'] = true;
-			$this->options['suppress_issue_types'] = array_merge(
-				$this->options['suppress_issue_types'],
-				[
-					// We obviously don't want to report false positives
-					'SecurityCheck-LikelyFalsePositive',
-					// This one still has a lot of false positives
-					'SecurityCheck-PHPSerializeInjection',
-				]
-			);
-		} else {
-			// BC code to avoid failures in case of emergency when taint-check is disabled.
-			$this->options['plugin_config']['unused_suppression_ignore_list'] = [
-				'SecurityCheck-DoubleEscaped',
-				'SecurityCheck-OTHER',
-				'SecurityCheck-SQLInjection',
-				'SecurityCheck-XSS',
-			];
+		$taintCheckPath = $curDir . "/../../phan-taint-check-plugin/MediaWikiSecurityCheckPlugin.php";
+		if ( !file_exists( $taintCheckPath ) ) {
+			$taintCheckPath =
+				"$vendorPath/vendor/mediawiki/phan-taint-check-plugin/MediaWikiSecurityCheckPlugin.php";
 		}
+		$this->options['plugins'][] = $taintCheckPath;
+		// Taint-check specific settings. NOTE: don't remove these lines, even if they duplicate some of
+		// the settings above. taint-check may fail hard if one of these settings goes missing.
+		$this->options['quick_mode'] = false;
+		$this->options['record_variable_context_and_scope'] = true;
+		$this->options['suppress_issue_types'] = array_merge(
+			$this->options['suppress_issue_types'],
+			[
+				// We obviously don't want to report false positives
+				'SecurityCheck-LikelyFalsePositive',
+				// This one still has a lot of false positives
+				'SecurityCheck-PHPSerializeInjection',
+			]
+		);
 		return $this;
 	}
 }
