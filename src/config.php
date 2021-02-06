@@ -56,6 +56,11 @@ $baseOptions = [
 		'PregRegexCheckerPlugin',
 		'UnusedSuppressionPlugin',
 		'DuplicateExpressionPlugin',
+		'LoopVariableReusePlugin',
+		'RedundantAssignmentPlugin',
+		'UnreachableCodePlugin',
+		'SimplifyExpressionPlugin',
+		'DuplicateArrayKeyPlugin',
 	],
 	'plugin_config' => [],
 	// BC for repos not checking whether these are set
@@ -147,6 +152,9 @@ $baseCfg = $baseCfg
 		'PhanParamNameIndicatingUnused',
 		'PhanParamNameIndicatingUnusedInClosure',
 		'PhanProvidingUnusedParameter',
+
+		// Would probably have many false positives
+		'PhanPluginMixedKeyNoKey',
 	] )
 	->readClassAliases( true )
 	->enableRedundantConditionDetection( true )
