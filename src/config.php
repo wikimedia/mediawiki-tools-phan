@@ -139,7 +139,18 @@ $baseCfg = $baseCfg
 		'PhanDeprecatedInterface',
 		'PhanDeprecatedProperty',
 		'PhanDeprecatedTrait',
+
+		// Covered by codesniffer
 		'PhanUnreferencedUseNormal',
+		'PhanUnreferencedUseFunction',
+		'PhanUnreferencedUseConstant',
+		'PhanDuplicateUseNormal',
+		'PhanDuplicateUseFunction',
+		'PhanDuplicateUseConstant',
+		'PhanUseNormalNoEffect',
+		'PhanUseNormalNamespacedNoEffect',
+		'PhanUseFunctionNoEffect',
+		'PhanUseConstantNoEffect',
 
 		// https://github.com/phan/phan/issues/3420
 		'PhanAccessClassConstantInternal',
