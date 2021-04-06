@@ -132,6 +132,7 @@ $baseCfg = $baseCfg
 	// TODO Enable by default
 	->setProgressBarMode( ConfigBuilder::PROGRESS_BAR_DISABLED )
 	->setSuppressedIssuesList( [
+		// Deprecation warnings
 		'PhanDeprecatedFunction',
 		'PhanDeprecatedClass',
 		'PhanDeprecatedClassConstant',
@@ -151,6 +152,7 @@ $baseCfg = $baseCfg
 		'PhanUseNormalNamespacedNoEffect',
 		'PhanUseFunctionNoEffect',
 		'PhanUseConstantNoEffect',
+		'PhanDeprecatedCaseInsensitiveDefine',
 
 		// https://github.com/phan/phan/issues/3420
 		'PhanAccessClassConstantInternal',
