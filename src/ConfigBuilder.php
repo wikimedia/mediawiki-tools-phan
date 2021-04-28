@@ -312,7 +312,6 @@ class ConfigBuilder {
 		// Taint-check specific settings. NOTE: don't remove these lines, even if they duplicate some of
 		// the settings above. taint-check may fail hard if one of these settings goes missing.
 		$this->options['quick_mode'] = false;
-		$this->options['record_variable_context_and_scope'] = true;
 		$this->options['suppress_issue_types'] = array_merge(
 			$this->options['suppress_issue_types'],
 			[
