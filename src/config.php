@@ -79,7 +79,7 @@ if ( !defined( 'MSG_EOR' ) ) {
  * names without phan complaining about "directory not found". It should NOT be used in
  * repo-specific config files.
  */
-$filterDirs = function ( array $dirs ) : array {
+$filterDirs = static function ( array $dirs ) : array {
 	return array_filter( $dirs, 'file_exists' );
 };
 
