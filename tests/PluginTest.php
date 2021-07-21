@@ -46,7 +46,7 @@ class PluginTest extends TestCase {
 	 * @param bool $usePolyfill Whether to force the polyfill parser
 	 * @return string|null
 	 */
-	private function runPhan( string $plugin, string $cfgFile, bool $usePolyfill ) : string {
+	private function runPhan( string $plugin, string $cfgFile, bool $usePolyfill ): string {
 		$codeBase = require __DIR__ . '/../vendor/phan/phan/src/codebase.php';
 		$cliBuilder = new CLIBuilder();
 		$cliBuilder->setOption( 'project-root-directory', __DIR__ );
@@ -74,7 +74,7 @@ class PluginTest extends TestCase {
 	 * @param string $plugin
 	 * @return Generator
 	 */
-	private function extractTestCases( string $plugin ) : Generator {
+	private function extractTestCases( string $plugin ): Generator {
 		$iterator = new DirectoryIterator( __DIR__ . "/plugins/$plugin" );
 
 		foreach ( $iterator as $dir ) {
@@ -96,7 +96,7 @@ class PluginTest extends TestCase {
 	/**
 	 * @return Generator
 	 */
-	public function provideTestCases() : Generator {
+	public function provideTestCases(): Generator {
 		$iterator = new DirectoryIterator( __DIR__ . '/plugins' );
 
 		foreach ( $iterator as $plugin ) {
@@ -115,7 +115,7 @@ class PluginTest extends TestCase {
 	 * @param string $configFile
 	 * @param string $expected
 	 */
-	public function testPlugins( string $path, string $configFile, string $expected ) : void {
+	public function testPlugins( string $path, string $configFile, string $expected ): void {
 		// Replace backslashes with slashes and replace CRLF with LF, both appear when running on Windows.
 		$actual = str_replace(
 			[ "\r", '\\' ],
@@ -133,7 +133,7 @@ class PluginTest extends TestCase {
 	 * @param string $configFile
 	 * @param string $expected
 	 */
-	public function testPlugins_Polyfill( string $path, string $configFile, string $expected ) : void {
+	public function testPlugins_Polyfill( string $path, string $configFile, string $expected ): void {
 		// Replace backslashes with slashes and replace CRLF with LF, both appear when running on Windows.
 		$actual = str_replace(
 			[ "\r", '\\' ],

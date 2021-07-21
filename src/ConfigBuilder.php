@@ -28,7 +28,7 @@ class ConfigBuilder {
 	/**
 	 * @return array
 	 */
-	public function make() : array {
+	public function make(): array {
 		return $this->options;
 	}
 
@@ -36,7 +36,7 @@ class ConfigBuilder {
 	 * @param array $list
 	 * @return $this
 	 */
-	public function setFileList( array $list ) : self {
+	public function setFileList( array $list ): self {
 		$this->options['file_list'] = $list;
 		return $this;
 	}
@@ -45,7 +45,7 @@ class ConfigBuilder {
 	 * @param string ...$files
 	 * @return $this
 	 */
-	public function addFiles( string ...$files ) : self {
+	public function addFiles( string ...$files ): self {
 		$this->options['file_list'] = array_merge(
 			$this->options['file_list'] ?? [],
 			$files
@@ -57,7 +57,7 @@ class ConfigBuilder {
 	 * @param array $list
 	 * @return $this
 	 */
-	public function setExcludedFileList( array $list ) : self {
+	public function setExcludedFileList( array $list ): self {
 		$this->options['exclude_file_list'] = $list;
 		return $this;
 	}
@@ -66,7 +66,7 @@ class ConfigBuilder {
 	 * @param string ...$files
 	 * @return $this
 	 */
-	public function excludeFiles( string ...$files ) : self {
+	public function excludeFiles( string ...$files ): self {
 		$this->options['exclude_file_list'] = array_merge(
 			$this->options['exclude_file_list'] ?? [],
 			$files
@@ -78,7 +78,7 @@ class ConfigBuilder {
 	 * @param string $regex
 	 * @return $this
 	 */
-	public function setExcludeFileRegex( string $regex ) : self {
+	public function setExcludeFileRegex( string $regex ): self {
 		$this->options['exclude_file_regex'] = $regex;
 		return $this;
 	}
@@ -87,7 +87,7 @@ class ConfigBuilder {
 	 * @param array $list
 	 * @return $this
 	 */
-	public function setDirectoryList( array $list ) : self {
+	public function setDirectoryList( array $list ): self {
 		$this->options['directory_list'] = $list;
 		return $this;
 	}
@@ -96,7 +96,7 @@ class ConfigBuilder {
 	 * @param string ...$dirs
 	 * @return $this
 	 */
-	public function addDirectories( string ...$dirs ) : self {
+	public function addDirectories( string ...$dirs ): self {
 		$this->options['directory_list'] = array_merge(
 			$this->options['directory_list'] ?? [],
 			$dirs
@@ -108,7 +108,7 @@ class ConfigBuilder {
 	 * @param array $list
 	 * @return $this
 	 */
-	public function setExcludedDirectoryList( array $list ) : self {
+	public function setExcludedDirectoryList( array $list ): self {
 		$this->options['exclude_analysis_directory_list'] = $list;
 		return $this;
 	}
@@ -117,7 +117,7 @@ class ConfigBuilder {
 	 * @param string ...$dirs
 	 * @return $this
 	 */
-	public function excludeDirectories( string ...$dirs ) : self {
+	public function excludeDirectories( string ...$dirs ): self {
 		$this->options['exclude_analysis_directory_list'] = array_merge(
 			$this->options['exclude_analysis_directory_list'] ?? [],
 			$dirs
@@ -129,7 +129,7 @@ class ConfigBuilder {
 	 * @param int $minSev
 	 * @return $this
 	 */
-	public function setMinimumSeverity( int $minSev ) : self {
+	public function setMinimumSeverity( int $minSev ): self {
 		$this->options['minimum_severity'] = $minSev;
 		return $this;
 	}
@@ -138,7 +138,7 @@ class ConfigBuilder {
 	 * @param bool $yn
 	 * @return $this
 	 */
-	public function allowMissingProperties( bool $yn ) : self {
+	public function allowMissingProperties( bool $yn ): self {
 		$this->options['allow_missing_properties'] = $yn;
 		return $this;
 	}
@@ -147,7 +147,7 @@ class ConfigBuilder {
 	 * @param bool $yn
 	 * @return $this
 	 */
-	public function allowScalarImplicitCasts( bool $yn ) : self {
+	public function allowScalarImplicitCasts( bool $yn ): self {
 		$this->options['scalar_implicit_cast'] = $yn;
 		return $this;
 	}
@@ -156,7 +156,7 @@ class ConfigBuilder {
 	 * @param bool $yn
 	 * @return $this
 	 */
-	public function allowNullCastsAsAnyType( bool $yn ) : self {
+	public function allowNullCastsAsAnyType( bool $yn ): self {
 		$this->options['null_casts_as_any_type'] = $yn;
 		return $this;
 	}
@@ -165,7 +165,7 @@ class ConfigBuilder {
 	 * @param bool $yn
 	 * @return $this
 	 */
-	public function enableDeadCodeDetection( bool $yn ) : self {
+	public function enableDeadCodeDetection( bool $yn ): self {
 		$this->options['dead_code_detection'] = $yn;
 		return $this;
 	}
@@ -174,7 +174,7 @@ class ConfigBuilder {
 	 * @param bool $yn
 	 * @return $this
 	 */
-	public function shouldDeadCodeDetectionPreferFalseNegatives( bool $yn ) : self {
+	public function shouldDeadCodeDetectionPreferFalseNegatives( bool $yn ): self {
 		$this->options['dead_code_detection_prefer_false_negative'] = $yn;
 		return $this;
 	}
@@ -183,7 +183,7 @@ class ConfigBuilder {
 	 * @param int $mode One of the PROGRESS_BAR_* constants
 	 * @return $this
 	 */
-	public function setProgressBarMode( int $mode ) : self {
+	public function setProgressBarMode( int $mode ): self {
 		switch ( $mode ) {
 			case self::PROGRESS_BAR_DISABLED:
 				$this->options['progress_bar'] = false;
@@ -205,7 +205,7 @@ class ConfigBuilder {
 	 * @param array $list
 	 * @return $this
 	 */
-	public function setSuppressedIssuesList( array $list ) : self {
+	public function setSuppressedIssuesList( array $list ): self {
 		$this->options['suppress_issue_types'] = $list;
 		return $this;
 	}
@@ -214,7 +214,7 @@ class ConfigBuilder {
 	 * @param string ...$types
 	 * @return $this
 	 */
-	public function suppressIssueTypes( string ...$types ) : self {
+	public function suppressIssueTypes( string ...$types ): self {
 		$this->options['suppress_issue_types'] = array_merge(
 			$this->options['suppress_issue_types'] ?? [],
 			$types
@@ -226,7 +226,7 @@ class ConfigBuilder {
 	 * @param array $globals [ 'global_name' => 'union_type' ]
 	 * @return $this
 	 */
-	public function addGlobalsWithTypes( array $globals ) : self {
+	public function addGlobalsWithTypes( array $globals ): self {
 		$this->options['globals_type_map'] = array_merge(
 			$this->options['globals_type_map'] ?? [],
 			$globals
@@ -238,7 +238,7 @@ class ConfigBuilder {
 	 * @param bool $yn
 	 * @return $this
 	 */
-	public function readClassAliases( bool $yn ) : self {
+	public function readClassAliases( bool $yn ): self {
 		$this->options['enable_class_alias_support'] = $yn;
 		return $this;
 	}
@@ -247,7 +247,7 @@ class ConfigBuilder {
 	 * @param bool $yn
 	 * @return $this
 	 */
-	public function enableRedundantConditionDetection( bool $yn ) : self {
+	public function enableRedundantConditionDetection( bool $yn ): self {
 		$this->options['redundant_condition_detection'] = $yn;
 		return $this;
 	}
@@ -257,9 +257,9 @@ class ConfigBuilder {
 	 * @param string $type 'extension' or 'skin'
 	 * @return string[]
 	 */
-	private function getDependenciesPaths( array $names, string $type ) : array {
+	private function getDependenciesPaths( array $names, string $type ): array {
 		return array_map(
-			function ( string $name ) use ( $type ) : string {
+			function ( string $name ) use ( $type ): string {
 				$dir = $type === 'extension' ? 'extensions' : 'skins';
 				return $this->installPath . "/$dir/$name";
 			},
@@ -272,7 +272,7 @@ class ConfigBuilder {
 	 * @param string ...$extensions
 	 * @return $this
 	 */
-	public function addExtensionDependencies( string ...$extensions ) : self {
+	public function addExtensionDependencies( string ...$extensions ): self {
 		$extDirs = $this->getDependenciesPaths( $extensions, 'extension' );
 		$this->addDirectories( ...$extDirs );
 		$this->excludeDirectories( ...$extDirs );
@@ -284,7 +284,7 @@ class ConfigBuilder {
 	 * @param string ...$skins
 	 * @return $this
 	 */
-	public function addSkinDependencies( string ...$skins ) : self {
+	public function addSkinDependencies( string ...$skins ): self {
 		$skinDirs = $this->getDependenciesPaths( $skins, 'skin' );
 		$this->addDirectories( ...$skinDirs );
 		$this->excludeDirectories( ...$skinDirs );
@@ -302,7 +302,7 @@ class ConfigBuilder {
 	public function enableTaintCheck(
 		string $curDir,
 		string $vendorPath
-	) : self {
+	): self {
 		$taintCheckPath = $curDir . "/../../phan-taint-check-plugin/MediaWikiSecurityCheckPlugin.php";
 		if ( !file_exists( $taintCheckPath ) ) {
 			$taintCheckPath =
