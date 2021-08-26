@@ -61,6 +61,7 @@ $baseOptions = [
 		'UnreachableCodePlugin',
 		'SimplifyExpressionPlugin',
 		'DuplicateArrayKeyPlugin',
+		'UseReturnValuePlugin',
 	],
 	'plugin_config' => [],
 	// BC for repos not checking whether these are set
