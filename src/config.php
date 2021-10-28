@@ -178,6 +178,8 @@ $baseCfg = $baseCfg
 	] )
 	->readClassAliases( true )
 	->enableRedundantConditionDetection( true )
+	->setMinimumPHPVersion( '7.2' )
+	->setTargetPHPVersion( '8.1' )
 	->addGlobalsWithTypes( [
 		'wgContLang' => '\\Language',
 		'wgParser' => '\\Parser',

@@ -253,6 +253,26 @@ class ConfigBuilder {
 	}
 
 	/**
+	 * Set the minimum PHP version that the codebase should support.
+	 * @param string $version
+	 * @return $this
+	 */
+	public function setMinimumPHPVersion( string $version ): self {
+		$this->options['minimum_target_php_version'] = $version;
+		return $this;
+	}
+
+	/**
+	 * Set the PHP version to be checked against for forward-compatibility warnings.
+	 * @param string $version
+	 * @return $this
+	 */
+	public function setTargetPHPVersion( string $version ): self {
+		$this->options['target_php_version'] = $version;
+		return $this;
+	}
+
+	/**
 	 * @param string[] $names
 	 * @param string $type 'extension' or 'skin'
 	 * @return string[]
