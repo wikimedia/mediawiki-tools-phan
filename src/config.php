@@ -108,7 +108,7 @@ $baseCfg = $baseCfg
 	] )
 	->setExcludeFileRegex(
 		'@vendor/(' .
-		'(' . implode( '|', [
+		'(' . implode( '|', array_merge( [
 			// Exclude known dev dependencies
 			'composer/installers',
 			'php-parallel-lint/php-console-color',
@@ -121,7 +121,9 @@ $baseCfg = $baseCfg
 			'squizlabs/php_codesniffer',
 			// Exclude stubs used in libraries
 			'[^/]+/[^/]+/\.phan',
-		] ) . ')' .
+		], PHP_MAJOR_VERSION < 8 ? [] : [
+			'symfony/polyfill-php80',
+		] ) ) . ')' .
 		'|' .
 		// Also exclude tests folder from dependencies
 		'.*/[Tt]ests?' .
