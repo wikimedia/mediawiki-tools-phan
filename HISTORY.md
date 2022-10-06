@@ -1,5 +1,11 @@
 # MediaWiki-Phan-Config release history #
 
+## 0.12.0 / 2022-10-06
+* Avoid PhanRedefinedInheritedInterface by excluding symfony/polyfill-php80 (Umherirrender)
+* Bump minimum PHP version to 7.4 (C. Scott Ananian)
+* Disable PhanPluginDuplicateExpressionAssignmentOperation (Reedy)
+* Bump phan to 5.4.1 and taint-check to 4.0.0 (Daimona Eaytoy)
+
 ## 0.11.1 / 2021-11-08
 * Set minimum and target PHP version (Daimona Eaytoy)
 
