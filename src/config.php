@@ -172,9 +172,6 @@ $baseCfg = $baseCfg
 		'PhanParamNameIndicatingUnusedInClosure',
 		'PhanProvidingUnusedParameter',
 
-		// No proper way to fix until we support PHP 7.4+ (T278139)
-		'PhanCompatibleSerializeInterfaceDeprecated',
-
 		// Would probably have many false positives
 		'PhanPluginMixedKeyNoKey',
 	] )
