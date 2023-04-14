@@ -11,18 +11,16 @@ class ConfigBuilder {
 	public const PROGRESS_BAR_LONG = 2;
 
 	/** @var array */
-	private $options;
-	/** @var string */
-	private $installPath;
+	private array $options = [];
 
 	/**
-	 * @param string $installPath
-	 * @param array $baseOptions Options to start with, if any. This should only be used in edge
-	 *   cases, or complicated config files (e.g. the base file in this repo).
+	 * Sets an array of raw phan options. This should generally be avoided, in favour of the setters below.
+	 * @param array $options
+	 * @return self
 	 */
-	public function __construct( string $installPath, array $baseOptions = [] ) {
-		$this->installPath = rtrim( $installPath, '/' );
-		$this->options = $baseOptions;
+	public function setRawOptions( array $options ): self {
+		$this->options = array_replace( $this->options, $options );
+		return $this;
 	}
 
 	/**
@@ -273,45 +271,6 @@ class ConfigBuilder {
 	}
 
 	/**
-	 * @param string[] $names
-	 * @param string $type 'extension' or 'skin'
-	 * @return string[]
-	 */
-	private function getDependenciesPaths( array $names, string $type ): array {
-		return array_map(
-			function ( string $name ) use ( $type ): string {
-				$dir = $type === 'extension' ? 'extensions' : 'skins';
-				return $this->installPath . "/$dir/$name";
-			},
-			$names
-		);
-	}
-
-	/**
-	 * @todo Exclude multiple vendor directories
-	 * @param string ...$extensions
-	 * @return $this
-	 */
-	public function addExtensionDependencies( string ...$extensions ): self {
-		$extDirs = $this->getDependenciesPaths( $extensions, 'extension' );
-		$this->addDirectories( ...$extDirs );
-		$this->excludeDirectories( ...$extDirs );
-		return $this;
-	}
-
-	/**
-	 * @todo Exclude multiple vendor directories
-	 * @param string ...$skins
-	 * @return $this
-	 */
-	public function addSkinDependencies( string ...$skins ): self {
-		$skinDirs = $this->getDependenciesPaths( $skins, 'skin' );
-		$this->addDirectories( ...$skinDirs );
-		$this->excludeDirectories( ...$skinDirs );
-		return $this;
-	}
-
-	/**
 	 * @internal
 	 * This should only be used by the config file in this repo.
 	 *
@@ -323,10 +282,11 @@ class ConfigBuilder {
 		string $curDir,
 		string $vendorPath
 	): self {
-		$taintCheckPath = $curDir . "/../../phan-taint-check-plugin/MediaWikiSecurityCheckPlugin.php";
+		$taintCheckPluginName = $this->getTaintCheckPluginName();
+		$taintCheckPath = $curDir . "/../../phan-taint-check-plugin/$taintCheckPluginName.php";
 		if ( !file_exists( $taintCheckPath ) ) {
 			$taintCheckPath =
-				"$vendorPath/vendor/mediawiki/phan-taint-check-plugin/MediaWikiSecurityCheckPlugin.php";
+				"$vendorPath/vendor/mediawiki/phan-taint-check-plugin/$taintCheckPluginName.php";
 		}
 		$this->options['plugins'][] = $taintCheckPath;
 		// Taint-check specific settings. NOTE: don't remove these lines, even if they duplicate some of
@@ -342,5 +302,9 @@ class ConfigBuilder {
 			]
 		);
 		return $this;
+	}
+
+	protected function getTaintCheckPluginName(): string {
+		return 'GenericSecurityCheckPlugin';
 	}
 }

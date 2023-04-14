@@ -18,58 +18,28 @@
  * @file
  */
 
-use MediaWikiPhanConfig\MediaWikiConfigBuilder;
+use MediaWikiPhanConfig\ConfigBuilder;
 
 require_once __DIR__ . '/base-config-functions.php';
 
 // Replace \\ by / for windows users to let exclude work correctly
 $DIR = str_replace( '\\', '/', __DIR__ );
 
-// TODO: Use \Phan\Config::projectPath()
-$IP = getenv( 'MW_INSTALL_PATH' ) !== false
-	// Replace \\ by / for windows users to let exclude work correctly
-	? str_replace( '\\', '/', getenv( 'MW_INSTALL_PATH' ) )
-	: '../..';
-
-$VP = getenv( 'MW_VENDOR_PATH' ) !== false
-	// Replace \\ by / for windows users to let exclude work correctly
-	? str_replace( '\\', '/', getenv( 'MW_VENDOR_PATH' ) )
-	: $IP;
-
-$baseCfg = new MediaWikiConfigBuilder( $IP );
+$baseCfg = new ConfigBuilder();
 setBaseOptions( $DIR, $baseCfg );
 
 $baseCfg = $baseCfg
 	->setDirectoryList( filterDirs( [
 		'includes/',
 		'src/',
-		'maintenance/',
 		'.phan/stubs/',
-		$IP . '/includes',
-		$IP . '/languages',
-		$IP . '/maintenance',
-		$IP . '/.phan/stubs/',
-		$VP . '/vendor',
+		'vendor/',
 	] ) )
 	->setExcludedDirectoryList( [
 		'.phan/stubs/',
-		$IP . '/includes',
-		$IP . '/languages',
-		$IP . '/maintenance',
-		$IP . '/.phan/stubs/',
-		$VP . '/vendor',
-
+		'vendor/',
 	] )
 	->setSuppressedIssuesList( [
-		// Deprecation warnings
-		'PhanDeprecatedFunction',
-		'PhanDeprecatedClass',
-		'PhanDeprecatedClassConstant',
-		'PhanDeprecatedFunctionInternal',
-		'PhanDeprecatedInterface',
-		'PhanDeprecatedProperty',
-		'PhanDeprecatedTrait',
-
 		// Covered by codesniffer
 		'PhanUnreferencedUseNormal',
 		'PhanUnreferencedUseFunction',
@@ -83,13 +53,6 @@ $baseCfg = $baseCfg
 		'PhanUseConstantNoEffect',
 		'PhanDeprecatedCaseInsensitiveDefine',
 
-		// https://github.com/phan/phan/issues/3420
-		'PhanAccessClassConstantInternal',
-		'PhanAccessClassInternal',
-		'PhanAccessConstantInternal',
-		'PhanAccessMethodInternal',
-		'PhanAccessPropertyInternal',
-
 		// These are quite PHP8-specific
 		'PhanParamNameIndicatingUnused',
 		'PhanParamNameIndicatingUnusedInClosure',
@@ -98,22 +61,11 @@ $baseCfg = $baseCfg
 		// Would probably have many false positives
 		'PhanPluginMixedKeyNoKey',
 	] )
-	->addGlobalsWithTypes( [
-		'wgContLang' => '\\Language',
-		'wgParser' => '\\Parser',
-		'wgTitle' => '\\Title',
-		'wgMemc' => '\\BagOStuff',
-		'wgUser' => '\\User',
-		'wgConf' => '\\SiteConfiguration',
-		'wgLang' => '\\Language',
-		'wgOut' => '\\OutputPage',
-		'wgRequest' => '\\WebRequest',
-	] )
-	->enableTaintCheck( $DIR, $VP )
+	->enableTaintCheck( $DIR, 'vendor/' )
 	->suppressIssueTypes(
-		// PHP 7.4 functionality; suppress by default until we no longer support PHP < 7.4.
-		// In reality, this means when MW 1.35 is EOL, expected September 2023.
-		// This will hopefully prevent some issues with backporting.
+	// PHP 7.4 functionality; suppress by default until we no longer support PHP < 7.4.
+	// In reality, this means when MW 1.35 is EOL, expected September 2023.
+	// This will hopefully prevent some issues with backporting.
 		'PhanPluginDuplicateExpressionAssignmentOperation',
 	);
 
