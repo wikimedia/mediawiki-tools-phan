@@ -1,5 +1,9 @@
 # MediaWiki-Phan-Config release history #
 
+## 0.12.1 / 2023-04-17
+* Enable PhanCompatibleSerializeInterfaceDeprecated (Umherirrender)
+* Create a separate config file for libraries (Daimona Eaytoy)
+
 ## 0.12.0 / 2022-10-06
 * Avoid PhanRedefinedInheritedInterface by excluding symfony/polyfill-php80 (Umherirrender)
 * Bump minimum PHP version to 7.4 (C. Scott Ananian)
