@@ -39,7 +39,7 @@ $VP = getenv( 'MW_VENDOR_PATH' ) !== false
 $baseCfg = new MediaWikiConfigBuilder( $IP );
 setBaseOptions( $DIR, $baseCfg );
 
-$baseCfg = $baseCfg
+$baseCfg
 	->setDirectoryList( filterDirs( [
 		'includes/',
 		'src/',

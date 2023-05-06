@@ -28,7 +28,7 @@ $DIR = str_replace( '\\', '/', __DIR__ );
 $baseCfg = new ConfigBuilder();
 setBaseOptions( $DIR, $baseCfg );
 
-$baseCfg = $baseCfg
+$baseCfg
 	->setDirectoryList( filterDirs( [
 		'includes/',
 		'src/',
