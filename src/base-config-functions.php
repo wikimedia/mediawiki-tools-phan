@@ -78,7 +78,8 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 			'AddNeverReturnTypePlugin',
 		] )
 		->addCustomPlugins( [
-			'NoEmptyIfDefinedPlugin'
+			'NoEmptyIfDefinedPlugin',
+			'NoBaseExceptionPlugin',
 		] );
 
 	if ( !defined( 'MSG_EOR' ) ) {

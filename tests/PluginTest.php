@@ -1,8 +1,10 @@
 <?php
 
 use Phan\CLIBuilder;
+use Phan\Config;
 use Phan\Output\Printer\PlainTextPrinter;
 use Phan\Phan;
+use Phan\Plugin\ConfigPluginSet;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\BufferedOutput;
 
@@ -51,6 +53,7 @@ class PluginTest extends TestCase {
 			$this->markTestSkipped( 'This test requires PHP extension \'ast\' loaded' );
 		}
 
+		Config::reset();
 		$codeBase = require __DIR__ . '/../vendor/phan/phan/src/codebase.php';
 		$cliBuilder = new CLIBuilder();
 		$cliBuilder->setOption( 'project-root-directory', __DIR__ );
@@ -62,6 +65,11 @@ class PluginTest extends TestCase {
 		}
 		$cli = $cliBuilder->build();
 
+		// Reset the plugin config so that things from previous tests do not persist.
+		// This is not handled by PHPUnit because the singleton is stored in a local static variable.
+		// And it can't be done earlier, because reset() recomputes the list of plugins, for which we need the
+		// config to be loaded.
+		ConfigPluginSet::reset();
 		$stream = new BufferedOutput();
 		$printer = new PlainTextPrinter();
 		$printer->configureOutput( $stream );

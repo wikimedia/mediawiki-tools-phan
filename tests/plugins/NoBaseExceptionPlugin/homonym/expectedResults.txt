@@ -1,0 +1,1 @@
+plugins/NoBaseExceptionPlugin/homonym/test.php:13 MediaWikiNoBaseException Instantiating /Exception directly is not allowed. Use SPL exceptions if the exception is unchecked, or define a custom exception class otherwise. See https://w.wiki/6nur
