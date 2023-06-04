@@ -15,7 +15,7 @@ class PluginTest extends TestCase {
 	 * Taken from phan's BaseTest class
 	 * @inheritDoc
 	 */
-	protected $backupStaticAttributesBlacklist = [
+	protected $backupStaticAttributesExcludeList = [
 		'Phan\Language\Type' => [
 			'canonical_object_map',
 			'internal_fn_cache',
@@ -37,7 +37,7 @@ class PluginTest extends TestCase {
 		],
 		'SecurityCheckPlugin' => [
 			'pluginInstance'
-		]
+		],
 	];
 
 	/**
@@ -47,6 +47,10 @@ class PluginTest extends TestCase {
 	 * @return string|null
 	 */
 	private function runPhan( string $plugin, string $cfgFile, bool $usePolyfill ): string {
+		if ( !$usePolyfill && !extension_loaded( 'ast' ) ) {
+			$this->markTestSkipped( 'This test requires PHP extension \'ast\' loaded' );
+		}
+
 		$codeBase = require __DIR__ . '/../vendor/phan/phan/src/codebase.php';
 		$cliBuilder = new CLIBuilder();
 		$cliBuilder->setOption( 'project-root-directory', __DIR__ );
@@ -123,7 +127,7 @@ class PluginTest extends TestCase {
 			$this->runPhan( $path, $configFile, false )
 		);
 
-		static::assertEquals( $expected, $actual );
+		static::assertSame( $expected, $actual );
 	}
 
 	/**
@@ -141,6 +145,6 @@ class PluginTest extends TestCase {
 			$this->runPhan( $path, $configFile, true )
 		);
 
-		static::assertEquals( $expected, $actual );
+		static::assertSame( $expected, $actual );
 	}
 }
