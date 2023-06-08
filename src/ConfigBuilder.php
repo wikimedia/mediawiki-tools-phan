@@ -271,6 +271,18 @@ class ConfigBuilder {
 	}
 
 	/**
+	 * @param array $classes
+	 * @return self
+	 */
+	public function addExceptionClassesWithOptionalThrowsPHPDoc( array $classes ): self {
+		$this->options['exception_classes_with_optional_throws_phpdoc'] = array_merge(
+			$this->options['exception_classes_with_optional_throws_phpdoc'] ?? [],
+			$classes
+		);
+		return $this;
+	}
+
+	/**
 	 * Adds one or more built-in plugins.
 	 * @param string[] $plugins
 	 * @return self
