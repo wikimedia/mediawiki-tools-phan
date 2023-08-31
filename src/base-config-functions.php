@@ -76,6 +76,9 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 			'DuplicateArrayKeyPlugin',
 			'UseReturnValuePlugin',
 			'AddNeverReturnTypePlugin',
+		] )
+		->addCustomPlugins( [
+			'NoEmptyIfDefinedPlugin'
 		] );
 
 	if ( !defined( 'MSG_EOR' ) ) {

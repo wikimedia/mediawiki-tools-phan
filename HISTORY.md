@@ -1,5 +1,8 @@
 # MediaWiki-Phan-Config release history #
 
+## UNRELEASED
+* Add plugin to forbid `empty()` on defined variables and properties (Daimona Eaytoy)
+
 ## 0.12.1 / 2023-04-17
 * Enable PhanCompatibleSerializeInterfaceDeprecated (Umherirrender)
 * Create a separate config file for libraries (Daimona Eaytoy)
