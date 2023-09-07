@@ -101,13 +101,15 @@ $baseCfg
 	->addGlobalsWithTypes( [
 		'wgContLang' => '\\Language',
 		'wgParser' => '\\Parser',
-		'wgTitle' => '\\Title',
+		'wgTitle' => '\\MediaWiki\\Title\\Title',
 		'wgMemc' => '\\BagOStuff',
 		'wgUser' => '\\User',
-		'wgConf' => '\\SiteConfiguration',
+		'wgConf' => file_exists( "$IP/includes/config/SiteConfiguration.php" )
+			? '\\MediaWiki\\Config\\SiteConfiguration' : '\\SiteConfiguration',
 		'wgLang' => '\\Language',
-		'wgOut' => '\\OutputPage',
-		'wgRequest' => '\\WebRequest',
+		'wgOut' => '\\MediaWiki\\Output\\OutputPage',
+		'wgRequest' => file_exists( "$IP/includes/Request/WebRequest.php" )
+			? '\\MediaWiki\\Request\\WebRequest' : '\\WebRequest',
 	] )
 	->enableTaintCheck( $DIR, $VP )
 	->suppressIssueTypes(
