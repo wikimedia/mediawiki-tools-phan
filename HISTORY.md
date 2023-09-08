@@ -1,7 +1,9 @@
 # MediaWiki-Phan-Config release history #
 
-## UNRELEASED
+## 0.13.0 / 2023-09-08
 * Add plugin to forbid `empty()` on defined variables and properties (Daimona Eaytoy)
+* Bump phan to 5.4.2 and taint-check to 5.0.0 (Michael Große)
+* "Auto discovery" of namespaces of wgConf and wgRequest (Amir Sarabadani)
 
 ## 0.12.1 / 2023-04-17
 * Enable PhanCompatibleSerializeInterfaceDeprecated (Umherirrender)
