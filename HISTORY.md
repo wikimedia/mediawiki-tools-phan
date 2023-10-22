@@ -2,7 +2,8 @@
 
 ## UNRELEASED
 * Add plugin to disallow use of `new Exception` (Daimona Eaytoy)
-* Do not emit MediaWikiNoEmptyIfDefined for properties of classes with the AllowDynamicProperties attribute (Daimona Eaytoy) 
+* Do not emit MediaWikiNoEmptyIfDefined for properties of classes with the AllowDynamicProperties attribute (Daimona Eaytoy)
+* Emit MediaWikiNoEmptyIfDefined for all node types except array element access (Daimona Eaytoy)
 
 ## 0.13.0 / 2023-09-08
 * Add plugin to forbid `empty()` on defined variables and properties (Daimona Eaytoy)

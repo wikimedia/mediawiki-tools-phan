@@ -13,17 +13,11 @@ use Phan\Exception\IssueException;
 use Phan\Exception\NodeException;
 use Phan\Exception\UnanalyzableException;
 use Phan\PluginV3\PluginAwarePostAnalysisVisitor;
+use const ast\AST_DIM;
 use const ast\AST_PROP;
 use const ast\AST_STATIC_PROP;
-use const ast\AST_VAR;
 
 class NoEmptyIfDefinedVisitor extends PluginAwarePostAnalysisVisitor {
-	private const ANALYSED_EXPR_TYPES = [
-		AST_VAR,
-		AST_PROP,
-		AST_STATIC_PROP,
-	];
-
 	/**
 	 * @inheritDoc
 	 */
@@ -34,11 +28,24 @@ class NoEmptyIfDefinedVisitor extends PluginAwarePostAnalysisVisitor {
 		}
 		$expr = $node->children['expr'];
 
-		if ( !$expr instanceof Node || !in_array( $expr->kind, self::ANALYSED_EXPR_TYPES, true ) ) {
-			// Only check "simple" node types. In particular, we're skipping array index access because that's a
-			// lesser issue even if the array element is guaranteed to be set, and also, it's not possible to
-			// analyze it properly given the FLAG_IGNORE_UNDEF trickery below.
-			return;
+		if ( !$expr instanceof Node || !$this->exprIsPossiblyUndefined( $expr ) ) {
+			self::emitPluginIssue(
+				$this->code_base,
+				$this->context,
+				NoEmptyIfDefinedPlugin::ISSUE_TYPE,
+				// Links to https://www.mediawiki.org/wiki/Manual:Coding_conventions/PHP#empty()
+				'Found usage of {FUNCTIONLIKE} on expression {CODE} that appears to be always set. ' .
+				'{FUNCTIONLIKE} should only be used to suppress errors. See https://w.wiki/6paE',
+				[ 'empty()', ASTReverter::toShortString( $expr ), 'empty()' ]
+			);
+		}
+	}
+
+	private function exprIsPossiblyUndefined( Node $expr ): bool {
+		if ( $expr->kind === AST_DIM ) {
+			// Skip this case, because it's a lesser issue even if the array element is guaranteed to be set, and also,
+			// it's not possible to analyze it properly given the FLAG_IGNORE_UNDEF trickery below.
+			return true;
 		}
 
 		if ( $expr->kind === AST_PROP || $expr->kind === AST_STATIC_PROP ) {
@@ -51,11 +58,11 @@ class NoEmptyIfDefinedVisitor extends PluginAwarePostAnalysisVisitor {
 			} catch ( IssueException | NodeException | UnanalyzableException $_ ) {
 				// Bail out if the expr is a property that phan can't resolve. In this scenario the union type will
 				// be empty, but not possibly undefined, yet we shouldn't emit an issue.
-				return;
+				return true;
 			}
 			if ( $property->getClass( $this->code_base )->hasDynamicProperties( $this->code_base ) ) {
 				// stdClass or another class with dynamic properties. These are always possibly undefined.
-				return;
+				return true;
 			}
 		}
 
@@ -70,21 +77,11 @@ class NoEmptyIfDefinedVisitor extends PluginAwarePostAnalysisVisitor {
 			);
 		} catch ( IssueException $_ ) {
 			// Ignore, because we're removing FLAG_IGNORE_UNDEF in a hacky way.
-			return;
+			return true;
 		} finally {
 			$expr->flags |= $prevIgnoreUndefFlag;
 		}
 
-		if ( !$type->isPossiblyUndefined() ) {
-			self::emitPluginIssue(
-				$this->code_base,
-				$this->context,
-				NoEmptyIfDefinedPlugin::ISSUE_TYPE,
-				// Links to https://www.mediawiki.org/wiki/Manual:Coding_conventions/PHP#empty()
-				'Found usage of {FUNCTIONLIKE} on expression {CODE} that appears to be always set. ' .
-				'{FUNCTIONLIKE} should only be used to suppress errors. See https://w.wiki/6paE',
-				[ 'empty()', ASTReverter::toShortString( $expr ), 'empty()' ]
-			);
-		}
+		return $type->isPossiblyUndefined();
 	}
 }
