@@ -12,7 +12,6 @@ use Phan\AST\UnionTypeVisitor;
 use Phan\Exception\IssueException;
 use Phan\Exception\NodeException;
 use Phan\Exception\UnanalyzableException;
-use Phan\Language\FQSEN\FullyQualifiedClassName;
 use Phan\PluginV3\PluginAwarePostAnalysisVisitor;
 use const ast\AST_PROP;
 use const ast\AST_STATIC_PROP;
@@ -54,8 +53,8 @@ class NoEmptyIfDefinedVisitor extends PluginAwarePostAnalysisVisitor {
 				// be empty, but not possibly undefined, yet we shouldn't emit an issue.
 				return;
 			}
-			if ( $property->getClassFQSEN() === FullyQualifiedClassName::getStdClassFQSEN() ) {
-				// Properties of stdClass are always possibly undefined.
+			if ( $property->getClass( $this->code_base )->hasDynamicProperties( $this->code_base ) ) {
+				// stdClass or another class with dynamic properties. These are always possibly undefined.
 				return;
 			}
 		}
