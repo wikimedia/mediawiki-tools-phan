@@ -5,4 +5,7 @@ return [
 	'quick_mode' => false,
 	'dead_code_detection' => false,
 	'redundant_condition_detection' => false,
+	'plugins' => [
+		'UnusedSuppressionPlugin',
+	],
 ];

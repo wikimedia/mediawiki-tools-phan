@@ -2,6 +2,7 @@
 
 use Phan\CLIBuilder;
 use Phan\Config;
+use Phan\Language\Type;
 use Phan\Output\Printer\PlainTextPrinter;
 use Phan\Phan;
 use Phan\Plugin\ConfigPluginSet;
@@ -18,6 +19,13 @@ class PluginTest extends TestCase {
 	 * @inheritDoc
 	 */
 	protected $backupStaticAttributesExcludeList = [
+		'Phan\AST\PhanAnnotationAdder' => [
+			'closures_for_kind',
+		],
+		'Phan\AST\ASTReverter' => [
+			'closure_map',
+			'noop',
+		],
 		'Phan\Language\Type' => [
 			'canonical_object_map',
 			'internal_fn_cache',
@@ -40,6 +48,11 @@ class PluginTest extends TestCase {
 		'SecurityCheckPlugin' => [
 			'pluginInstance'
 		],
+		// Back this up to avoid loading plugins multiple times (which is slow, and most importantly fails because
+		// the class would be re-declared every time).
+		'Phan\Plugin\ConfigPluginSet' => [
+			'plugin_instances_cache'
+		]
 	];
 
 	/**
@@ -54,6 +67,7 @@ class PluginTest extends TestCase {
 		}
 
 		Config::reset();
+		Type::clearAllMemoizations();
 		$codeBase = require __DIR__ . '/../vendor/phan/phan/src/codebase.php';
 		$cliBuilder = new CLIBuilder();
 		$cliBuilder->setOption( 'project-root-directory', __DIR__ );
