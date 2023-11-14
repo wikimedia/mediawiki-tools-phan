@@ -8,7 +8,8 @@
 	backupStaticAttributes="true"
 	beStrictAboutTestsThatDoNotTestAnything="true"
 	beStrictAboutOutputDuringTests="true"
-	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+	bootstrap="tests/bootstrap.php">
 	<coverage includeUncoveredFiles="true">
 		<include>
 			<directory suffix=".php">./src</directory>
