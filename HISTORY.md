@@ -1,5 +1,8 @@
 # MediaWiki-Phan-Config release history #
 
+## UNRELEASED
+* Rename NoEmptyIfDefinedPlugin to RedundantExistenceChecksPlugin (Daimona Eaytoy)
+
 ## 0.14.0 / 2024-02-03
 * Add plugin to disallow use of `new Exception` (Daimona Eaytoy)
 * Do not emit MediaWikiNoEmptyIfDefined for properties of classes with the AllowDynamicProperties attribute (Daimona Eaytoy)

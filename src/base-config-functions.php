@@ -78,7 +78,7 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 			'AddNeverReturnTypePlugin',
 		] )
 		->addCustomPlugins( [
-			'NoEmptyIfDefinedPlugin',
+			'RedundantExistenceChecksPlugin',
 			'NoBaseExceptionPlugin',
 		] );
 

@@ -17,7 +17,7 @@ use const ast\AST_DIM;
 use const ast\AST_PROP;
 use const ast\AST_STATIC_PROP;
 
-class NoEmptyIfDefinedVisitor extends PluginAwarePostAnalysisVisitor {
+class RedundantExistenceChecksVisitor extends PluginAwarePostAnalysisVisitor {
 	/**
 	 * @inheritDoc
 	 */
@@ -32,7 +32,7 @@ class NoEmptyIfDefinedVisitor extends PluginAwarePostAnalysisVisitor {
 			self::emitPluginIssue(
 				$this->code_base,
 				$this->context,
-				NoEmptyIfDefinedPlugin::ISSUE_TYPE,
+				RedundantExistenceChecksPlugin::EMPTY_ISSUE_TYPE,
 				// Links to https://www.mediawiki.org/wiki/Manual:Coding_conventions/PHP#empty()
 				'Found usage of {FUNCTIONLIKE} on expression {CODE} that appears to be always set. ' .
 				'{FUNCTIONLIKE} should only be used to suppress errors. See https://w.wiki/6paE',
