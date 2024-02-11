@@ -9,6 +9,7 @@ use Phan\PluginV3\PostAnalyzeNodeCapability;
 
 class RedundantExistenceChecksPlugin extends PluginV3 implements PostAnalyzeNodeCapability {
 	public const EMPTY_ISSUE_TYPE = 'MediaWikiNoEmptyIfDefined';
+	public const ISSET_ISSUE_TYPE = 'MediaWikiNoIssetIfDefined';
 
 	/**
 	 * @inheritDoc

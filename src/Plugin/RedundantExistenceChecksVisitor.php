@@ -41,6 +41,30 @@ class RedundantExistenceChecksVisitor extends PluginAwarePostAnalysisVisitor {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public function visitIsset( Node $node ): void {
+		if ( $this->context->isInGlobalScope() ) {
+			// Bail out immediately to avoid any chance of fun false positives.
+			return;
+		}
+		$expr = $node->children['var'];
+
+		if ( !$expr instanceof Node || !$this->exprIsPossiblyUndefined( $expr ) ) {
+			self::emitPluginIssue(
+				$this->code_base,
+				$this->context,
+				RedundantExistenceChecksPlugin::ISSET_ISSUE_TYPE,
+				// Links to https://www.mediawiki.org/wiki/Manual:Coding_conventions/PHP#isset()
+				'Found usage of {FUNCTIONLIKE} on expression {CODE} that appears to be always set. ' .
+				'{FUNCTIONLIKE} should only be used to suppress errors. ' .
+				'Check whether the expression is {TYPE} instead. See https://w.wiki/98zs',
+				[ 'isset()', ASTReverter::toShortString( $expr ), 'isset()', 'null' ]
+			);
+		}
+	}
+
 	private function exprIsPossiblyUndefined( Node $expr ): bool {
 		if ( $expr->kind === AST_DIM ) {
 			// Skip this case, because it's a lesser issue even if the array element is guaranteed to be set, and also,

@@ -2,6 +2,7 @@
 
 ## UNRELEASED
 * Rename NoEmptyIfDefinedPlugin to RedundantExistenceChecksPlugin (Daimona Eaytoy)
+* Add `isset()` checks to RedundantExistenceChecksPlugin (Daimona Eaytoy)
 
 ## 0.14.0 / 2024-02-03
 * Add plugin to disallow use of `new Exception` (Daimona Eaytoy)
