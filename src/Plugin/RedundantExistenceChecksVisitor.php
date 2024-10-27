@@ -73,6 +73,12 @@ class RedundantExistenceChecksVisitor extends PluginAwarePostAnalysisVisitor {
 		}
 
 		if ( $expr->kind === AST_PROP || $expr->kind === AST_STATIC_PROP ) {
+			$propExpr = $expr->kind === AST_PROP ? $expr->children['expr'] : $expr->children['class'];
+			if ( $propExpr instanceof Node && $propExpr->kind === AST_DIM ) {
+				// The `isset` might be there for the array access, not the property access. And if phan doesn't treat
+				// the array element as possibly undefined, we'd emit a false positive. So, skip (T378284).
+				return true;
+			}
 			try {
 				$property = ( new ContextNode(
 					$this->code_base,
