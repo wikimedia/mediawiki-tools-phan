@@ -88,6 +88,15 @@ class RedundantExistenceChecksVisitor extends PluginAwarePostAnalysisVisitor {
 				// stdClass or another class with dynamic properties. These are always possibly undefined.
 				return true;
 			}
+
+			if ( !$property->getUnionType()->getRealUnionType()->isEmpty() ) {
+				// T378286: If it's a typed property without default value, do not emit an issue. `isset()` can be used
+				// to check if the property has been initialized. See also https://github.com/phan/phan/issues/4720
+				$defaultType = $property->getDefaultType();
+				if ( $defaultType && $defaultType->getRealUnionType()->isNull() ) {
+					return true;
+				}
+			}
 		}
 
 		$prevIgnoreUndefFlag = $expr->flags & PhanAnnotationAdder::FLAG_IGNORE_UNDEF;
