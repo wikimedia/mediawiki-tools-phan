@@ -64,7 +64,7 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 		->readClassAliases( true )
 		->enableRedundantConditionDetection( true )
 		->setMinimumPHPVersion( '7.4' )
-		->setTargetPHPVersion( '8.1' )
+		->setTargetPHPVersion( '8.3' )
 		->addPlugins( [
 			'PregRegexCheckerPlugin',
 			'UnusedSuppressionPlugin',
