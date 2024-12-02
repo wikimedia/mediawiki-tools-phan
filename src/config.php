@@ -82,6 +82,7 @@ $baseCfg
 		'PhanUseFunctionNoEffect',
 		'PhanUseConstantNoEffect',
 		'PhanDeprecatedCaseInsensitiveDefine',
+		'PhanDeprecatedImplicitNullableParam',
 
 		// https://github.com/phan/phan/issues/3420
 		'PhanAccessClassConstantInternal',

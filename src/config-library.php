@@ -52,6 +52,7 @@ $baseCfg
 		'PhanUseFunctionNoEffect',
 		'PhanUseConstantNoEffect',
 		'PhanDeprecatedCaseInsensitiveDefine',
+		'PhanDeprecatedImplicitNullableParam',
 
 		// These are quite PHP8-specific
 		'PhanParamNameIndicatingUnused',
