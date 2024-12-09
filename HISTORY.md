@@ -1,6 +1,6 @@
 # MediaWiki-Phan-Config release history #
 
-## UNRELEASED
+## 0.15.0 / 2024-12-09
 * Rename NoEmptyIfDefinedPlugin to RedundantExistenceChecksPlugin (Daimona Eaytoy)
 * Add `isset()` checks to RedundantExistenceChecksPlugin (Daimona Eaytoy)
 * Upgrade phan to 5.4.5 and mediawiki/phan-taint-check-plugin to 6.1.0 (James D. Forrester)
