@@ -1,6 +1,9 @@
 <?php
 
+// phpcs:disable MediaWiki.NamingConventions.ValidGlobalName
+
 use Phan\CLIBuilder;
+use Phan\CodeBase;
 use Phan\Config;
 use Phan\Language\Type;
 use Phan\Output\Printer\PlainTextPrinter;
@@ -14,6 +17,8 @@ use Symfony\Component\Console\Output\BufferedOutput;
  * @coversNothing
  */
 class PluginTest extends TestCase {
+	private ?CodeBase $codeBase = null;
+
 	/**
 	 * Taken from phan's BaseTest class
 	 * @inheritDoc
@@ -56,6 +61,33 @@ class PluginTest extends TestCase {
 	];
 
 	/**
+	 * Copied from phan's {@see \Phan\Tests\CodeBaseAwareTest}
+	 */
+	public function setUp(): void {
+		static $code_base = null;
+		if ( !$code_base ) {
+			global $internal_class_name_list;
+			global $internal_interface_name_list;
+			global $internal_trait_name_list;
+			global $internal_function_name_list;
+			if ( !isset( $internal_class_name_list ) ) {
+				require_once __DIR__ . '/../vendor/phan/phan/src/codebase.php';
+			}
+
+			$code_base = new CodeBase(
+				$internal_class_name_list,
+				$internal_interface_name_list,
+				$internal_trait_name_list,
+				CodeBase::getPHPInternalConstantNameList(),
+				$internal_function_name_list
+			);
+		}
+
+		Type::clearAllMemoizations();
+		$this->codeBase = $code_base->shallowClone();
+	}
+
+	/**
 	 * @param string $plugin
 	 * @param string $cfgFile
 	 * @param bool $usePolyfill Whether to force the polyfill parser
@@ -68,7 +100,6 @@ class PluginTest extends TestCase {
 
 		Config::reset();
 		Type::clearAllMemoizations();
-		$codeBase = require __DIR__ . '/../vendor/phan/phan/src/codebase.php';
 		$cliBuilder = new CLIBuilder();
 		$cliBuilder->setOption( 'project-root-directory', __DIR__ );
 		$cliBuilder->setOption( 'config-file', $cfgFile );
@@ -89,7 +120,7 @@ class PluginTest extends TestCase {
 		$printer->configureOutput( $stream );
 		Phan::setPrinter( $printer );
 
-		Phan::analyzeFileList( $codeBase, static function () use ( $cli ) {
+		Phan::analyzeFileList( $this->codeBase, static function () use ( $cli ) {
 			return $cli->getFileList();
 		} );
 
