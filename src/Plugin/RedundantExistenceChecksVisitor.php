@@ -90,8 +90,9 @@ class RedundantExistenceChecksVisitor extends PluginAwarePostAnalysisVisitor {
 				// be empty, but not possibly undefined, yet we shouldn't emit an issue.
 				return true;
 			}
-			if ( $property->getClass( $this->code_base )->hasDynamicProperties( $this->code_base ) ) {
-				// stdClass or another class with dynamic properties. These are always possibly undefined.
+
+			if ( $property->isDynamicOrFromPHPDoc() ) {
+				// Dynamic and doc-only properties are always possibly undefined.
 				return true;
 			}
 
