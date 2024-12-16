@@ -1,5 +1,9 @@
 # MediaWiki-Phan-Config release history #
 
+## 0.15.1 / 2025-01-09
+* Fixed a bug where doc-only properties were not considered as possibly undefined.
+* Fixed a bug in PHP >= 8 where redundant issets would never be reported for properties of classes with the AllowDynamicProperties attribute.
+
 ## 0.15.0 / 2024-12-09
 * Rename NoEmptyIfDefinedPlugin to RedundantExistenceChecksPlugin (Daimona Eaytoy)
 * Add `isset()` checks to RedundantExistenceChecksPlugin (Daimona Eaytoy)
