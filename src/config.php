@@ -100,14 +100,14 @@ $baseCfg
 		'PhanPluginMixedKeyNoKey',
 	] )
 	->addGlobalsWithTypes( [
-		'wgContLang' => '\\Language',
-		'wgParser' => '\\Parser',
+		'wgContLang' => '\\MediaWiki\\Language\\Language',
+		'wgParser' => '\\MediaWiki\\Parser\\Parser',
 		'wgTitle' => '\\MediaWiki\\Title\\Title',
-		'wgMemc' => '\\BagOStuff',
-		'wgUser' => '\\User',
+		'wgMemc' => '\\Wikimedia\ObjectCache\\BagOStuff',
+		'wgUser' => '\\MediaWiki\\User\\User',
 		'wgConf' => file_exists( "$IP/includes/config/SiteConfiguration.php" )
 			? '\\MediaWiki\\Config\\SiteConfiguration' : '\\SiteConfiguration',
-		'wgLang' => '\\Language',
+		'wgLang' => '\\MediaWiki\\Language\\Language',
 		'wgOut' => '\\MediaWiki\\Output\\OutputPage',
 		'wgRequest' => file_exists( "$IP/includes/Request/WebRequest.php" )
 			? '\\MediaWiki\\Request\\WebRequest' : '\\WebRequest',
