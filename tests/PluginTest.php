@@ -131,7 +131,7 @@ class PluginTest extends TestCase {
 	 * @param string $plugin
 	 * @return Generator
 	 */
-	private function extractTestCases( string $plugin ): Generator {
+	private static function extractTestCases( string $plugin ): Generator {
 		$iterator = new DirectoryIterator( __DIR__ . "/plugins/$plugin" );
 
 		foreach ( $iterator as $dir ) {
@@ -153,7 +153,7 @@ class PluginTest extends TestCase {
 	/**
 	 * @return Generator
 	 */
-	public function provideTestCases(): Generator {
+	public static function provideTestCases(): Generator {
 		$iterator = new DirectoryIterator( __DIR__ . '/plugins' );
 
 		foreach ( $iterator as $plugin ) {
@@ -161,7 +161,7 @@ class PluginTest extends TestCase {
 				continue;
 			}
 
-			yield from $this->extractTestCases( $plugin->getBasename() );
+			yield from self::extractTestCases( $plugin->getBasename() );
 		}
 	}
 
