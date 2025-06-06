@@ -63,7 +63,10 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 		->setProgressBarMode( ConfigBuilder::PROGRESS_BAR_DISABLED )
 		->readClassAliases( true )
 		->enableRedundantConditionDetection( true )
-		->setMinimumPHPVersion( '7.4' )
+		// We need to set this here, or phan will assume this to be the same as the
+		// target PHP version below in projects where composer.json does not specify
+		// a minimum version.
+		->setMinimumPHPVersion( '8.1' )
 		->setTargetPHPVersion( '8.3' )
 		->addPlugins( [
 			'PregRegexCheckerPlugin',
