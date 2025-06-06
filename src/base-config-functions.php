@@ -67,7 +67,7 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 		// target PHP version below in projects where composer.json does not specify
 		// a minimum version.
 		->setMinimumPHPVersion( '8.1' )
-		->setTargetPHPVersion( '8.3' )
+		->setTargetPHPVersion( '8.4' )
 		->addPlugins( [
 			'PregRegexCheckerPlugin',
 			'UnusedSuppressionPlugin',
