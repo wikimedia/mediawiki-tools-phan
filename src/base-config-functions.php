@@ -39,7 +39,7 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 		->excludeDirectories( $curDir . '/stubs' )
 		->setExcludeFileRegex(
 			'@vendor/(' .
-			'(' . implode( '|', array_merge( [
+			'(' . implode( '|', [
 				// Exclude known dev dependencies
 				'composer/installers',
 				'php-parallel-lint/php-console-color',
@@ -52,9 +52,8 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 				'squizlabs/php_codesniffer',
 				// Exclude stubs used in libraries
 				'[^/]+/[^/]+/\.phan',
-			], PHP_MAJOR_VERSION < 8 ? [] : [
 				'symfony/polyfill-php80',
-			] ) ) . ')' .
+			] ) . ')' .
 			'|' .
 			// Also exclude tests folder from dependencies
 			'.*/[Tt]ests?' .
