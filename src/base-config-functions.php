@@ -22,6 +22,11 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 		'markdown_issue_messages' => false,
 		'generic_types_enabled' => true,
 		'plugin_config' => [],
+		'warn_about_undocumented_throw_statements' => true,
+		'exception_classes_with_optional_throws_phpdoc' => [
+			'LogicException',
+			'RuntimeException',
+		],
 		// BC for repos not checking whether these are set
 		'file_list' => [],
 		'exclude_file_list' => [],

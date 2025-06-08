@@ -112,6 +112,13 @@ $baseCfg
 		'wgRequest' => file_exists( "$IP/includes/Request/WebRequest.php" )
 			? '\\MediaWiki\\Request\\WebRequest' : '\\WebRequest',
 	] )
+	->addExceptionClassesWithOptionalThrowsPHPDoc( [
+		'ErrorPageError',
+		'\\MediaWiki\\Rest\\HttpException',
+		'\\MediaWiki\\Maintenance\\MaintenanceFatalError',
+		// TODO: Remove when the class is dropped (T86704)
+		'MWException',
+	] )
 	->enableTaintCheck( $DIR, $VP );
 
 // BC: We're not ready to use the ConfigBuilder everywhere

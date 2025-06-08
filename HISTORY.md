@@ -1,5 +1,8 @@
 # MediaWiki-Phan-Config release history #
 
+## UNRELEASED
+* Warn against undocumented checked exception (Daimona Eaytoy)
+
 ## 0.15.1 / 2025-01-09
 * Fixed a bug where doc-only properties were not considered as possibly undefined.
 * Fixed a bug in PHP >= 8 where redundant issets would never be reported for properties of classes with the AllowDynamicProperties attribute.
