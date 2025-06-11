@@ -2,6 +2,7 @@
 
 ## UNRELEASED
 * Warn against undocumented checked exception (Daimona Eaytoy)
+* Bump phan to 5.4.6 and taint-check to 6.2.0 (Daimona Eaytoy)
 
 ## 0.15.1 / 2025-01-09
 * Fixed a bug where doc-only properties were not considered as possibly undefined.
