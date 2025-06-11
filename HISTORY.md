@@ -1,7 +1,10 @@
 # MediaWiki-Phan-Config release history #
 
-## UNRELEASED
+## 0.16.0 / 2025-07-02
+* Use namespaced MediaWiki classes in `globals_type_map` (James D. Forrester)
+* Bump minimum target PHP version to 8.1 and target PHP version to 8.4 (Daimona Eaytoy)
 * Warn against undocumented checked exception (Daimona Eaytoy)
+* Enable a subset of `unused_variable_detection` features to flag: unused variables in `catch` and closure `use`, unused parameters in private methods, unused static variables.
 * Bump phan to 5.5.0 and taint-check to 6.2.1 (Daimona Eaytoy)
 
 ## 0.15.1 / 2025-01-09
