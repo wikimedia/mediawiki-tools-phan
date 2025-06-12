@@ -88,9 +88,11 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 			'PhanDeprecatedCaseInsensitiveDefine',
 			'PhanDeprecatedImplicitNullableParam',
 
-			// These are quite PHP8-specific
+			// We have several parameters named "unused" in public interfaces
 			'PhanParamNameIndicatingUnused',
 			'PhanParamNameIndicatingUnusedInClosure',
+
+			// Consider unsuppressing when we formalize named parameter adoption
 			'PhanProvidingUnusedParameter',
 
 			// Would probably have many false positives
