@@ -2,8 +2,7 @@
 
 // @phan-file-suppress PhanUndeclaredProperty,PhanNoopIsset
 // @phan-file-suppress PhanUndeclaredClassAttribute,UnusedPluginSuppression,UnusedPluginFileSuppression
-// Different suppressions are needed in different PHP versions (7.4 does not "see" the attribute at all, 8.0 and 8.1
-// see it but can't find the class, 8.2 sees it and knows what it is).
+// Different suppressions are needed in different PHP versions (AllowDynamicProperties was introduced in PHP 8.2)
 
 class ClassForDynamicPropWithoutAttribute {
 	public $thisPropertyIsDefined;
