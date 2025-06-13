@@ -27,6 +27,7 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 			'LogicException',
 			'RuntimeException',
 		],
+		'unused_variable_detection' => true,
 		// BC for repos not checking whether these are set
 		'file_list' => [],
 		'exclude_file_list' => [],
@@ -97,6 +98,25 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 
 			// Would probably have many false positives
 			'PhanPluginMixedKeyNoKey',
+
+			// Too many false positives. Redundant variable detection is enabled for T396815 (non-capturing `catch`)
+			// and other issues with low false positive rates.
+			// Intentionally enabled, as of phan 5.4.6: PhanUnusedPrivateMethodParameter, PhanUnusedVariableStatic,
+			// PhanUnusedClosureUseVariable, PhanUnusedVariableCaughtException
+			'PhanUnusedPublicMethodParameter',
+			'PhanUnusedPublicNoOverrideMethodParameter',
+			'PhanUnusedPublicFinalMethodParameter',
+			'PhanUnusedProtectedMethodParameter',
+			'PhanUnusedProtectedNoOverrideMethodParameter',
+			'PhanUnusedProtectedFinalMethodParameter',
+			'PhanUnusedGlobalFunctionParameter',
+			'PhanUnusedClosureParameter',
+			'PhanUnusedVariable',
+			'PhanUnusedVariableGlobal',
+			'PhanUnusedVariableValueOfForeachWithKey',
+			'PhanPossiblyInfiniteLoop',
+			'PhanSideEffectFreeWhileBody',
+			'PhanPossiblyInfiniteRecursionSameParams',
 		] )
 		->addPlugins( [
 			'PregRegexCheckerPlugin',
