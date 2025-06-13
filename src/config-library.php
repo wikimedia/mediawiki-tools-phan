@@ -39,29 +39,6 @@ $baseCfg
 		'.phan/stubs/',
 		'vendor/',
 	] )
-	->setSuppressedIssuesList( [
-		// Covered by codesniffer
-		'PhanUnreferencedUseNormal',
-		'PhanUnreferencedUseFunction',
-		'PhanUnreferencedUseConstant',
-		'PhanDuplicateUseNormal',
-		'PhanDuplicateUseFunction',
-		'PhanDuplicateUseConstant',
-		'PhanUseNormalNoEffect',
-		'PhanUseNormalNamespacedNoEffect',
-		'PhanUseFunctionNoEffect',
-		'PhanUseConstantNoEffect',
-		'PhanDeprecatedCaseInsensitiveDefine',
-		'PhanDeprecatedImplicitNullableParam',
-
-		// These are quite PHP8-specific
-		'PhanParamNameIndicatingUnused',
-		'PhanParamNameIndicatingUnusedInClosure',
-		'PhanProvidingUnusedParameter',
-
-		// Would probably have many false positives
-		'PhanPluginMixedKeyNoKey',
-	] )
 	->enableTaintCheck( $DIR, 'vendor/' );
 
 // BC: We're not ready to use the ConfigBuilder everywhere

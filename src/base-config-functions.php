@@ -73,6 +73,29 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 		// a minimum version.
 		->setMinimumPHPVersion( '8.1' )
 		->setTargetPHPVersion( '8.4' )
+		->setSuppressedIssuesList( [
+			// Covered by codesniffer
+			'PhanUnreferencedUseNormal',
+			'PhanUnreferencedUseFunction',
+			'PhanUnreferencedUseConstant',
+			'PhanDuplicateUseNormal',
+			'PhanDuplicateUseFunction',
+			'PhanDuplicateUseConstant',
+			'PhanUseNormalNoEffect',
+			'PhanUseNormalNamespacedNoEffect',
+			'PhanUseFunctionNoEffect',
+			'PhanUseConstantNoEffect',
+			'PhanDeprecatedCaseInsensitiveDefine',
+			'PhanDeprecatedImplicitNullableParam',
+
+			// These are quite PHP8-specific
+			'PhanParamNameIndicatingUnused',
+			'PhanParamNameIndicatingUnusedInClosure',
+			'PhanProvidingUnusedParameter',
+
+			// Would probably have many false positives
+			'PhanPluginMixedKeyNoKey',
+		] )
 		->addPlugins( [
 			'PregRegexCheckerPlugin',
 			'UnusedSuppressionPlugin',

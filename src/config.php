@@ -60,7 +60,7 @@ $baseCfg
 		$VP . '/vendor',
 
 	] )
-	->setSuppressedIssuesList( [
+	->suppressIssueTypes(
 		// Deprecation warnings
 		'PhanDeprecatedFunction',
 		'PhanDeprecatedClass',
@@ -70,35 +70,13 @@ $baseCfg
 		'PhanDeprecatedProperty',
 		'PhanDeprecatedTrait',
 
-		// Covered by codesniffer
-		'PhanUnreferencedUseNormal',
-		'PhanUnreferencedUseFunction',
-		'PhanUnreferencedUseConstant',
-		'PhanDuplicateUseNormal',
-		'PhanDuplicateUseFunction',
-		'PhanDuplicateUseConstant',
-		'PhanUseNormalNoEffect',
-		'PhanUseNormalNamespacedNoEffect',
-		'PhanUseFunctionNoEffect',
-		'PhanUseConstantNoEffect',
-		'PhanDeprecatedCaseInsensitiveDefine',
-		'PhanDeprecatedImplicitNullableParam',
-
 		// https://github.com/phan/phan/issues/3420
 		'PhanAccessClassConstantInternal',
 		'PhanAccessClassInternal',
 		'PhanAccessConstantInternal',
 		'PhanAccessMethodInternal',
 		'PhanAccessPropertyInternal',
-
-		// These are quite PHP8-specific
-		'PhanParamNameIndicatingUnused',
-		'PhanParamNameIndicatingUnusedInClosure',
-		'PhanProvidingUnusedParameter',
-
-		// Would probably have many false positives
-		'PhanPluginMixedKeyNoKey',
-	] )
+	)
 	->addGlobalsWithTypes( [
 		'wgContLang' => '\\MediaWiki\\Language\\Language',
 		'wgParser' => '\\MediaWiki\\Parser\\Parser',
