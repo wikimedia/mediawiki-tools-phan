@@ -11,8 +11,8 @@
 	],
 	"require": {
 		"php": ">=7.4.0",
-		"phan/phan": "5.4.6",
-		"mediawiki/phan-taint-check-plugin": "6.2.0"
+		"phan/phan": "5.5.0",
+		"mediawiki/phan-taint-check-plugin": "6.2.1"
 	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "47.0.0",
