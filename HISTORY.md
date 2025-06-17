@@ -1,5 +1,11 @@
 # MediaWiki-Phan-Config release history #
 
+## 0.21.0 / UNRELEASED
+* Add FirstClassCallableRecommendPlugin (Bartosz Dziewoński)
+  The plugin suggests replacing callable strings and arrays with first-class callable syntax,
+  and which includes a fixer for `phan --automatic-fix`.
+* …
+
 ## 0.20.0 / 2026-03-05
 * Bump phan to 6.0.2 and taint-check to 9.1.0 (Daimona Eaytoy)
 * Update exclude file regex

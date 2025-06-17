@@ -100,6 +100,10 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 			// Would probably have many false positives
 			'PhanPluginMixedKeyNoKey',
 
+			// Using the `strlen( ... )` syntax for built-in functions feels quite verbose,
+			// we probably shouldn't try to make everyone use that, but it's there if you want
+			'MediaWikiUseFirstClassCallableInternalFunc',
+
 			// Issues from unused variable detection with too many false positives. For variables in particular, we
 			// would need a way to annotate RAII classes, see e.g. plugin attempt in
 			// Id87c4a437c0f9144fb53a576af16fc9cb23baed1.
@@ -150,6 +154,7 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 			'CaseMismatchPlugin',
 		] )
 		->addCustomPlugins( [
+			'FirstClassCallableRecommendPlugin',
 			'RedundantExistenceChecksPlugin',
 			'NoBaseExceptionPlugin',
 		] );
