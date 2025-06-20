@@ -26,6 +26,7 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 		'exception_classes_with_optional_throws_phpdoc' => [
 			'LogicException',
 			'RuntimeException',
+			'Error',
 		],
 		'unused_variable_detection' => true,
 		// BC for repos not checking whether these are set
