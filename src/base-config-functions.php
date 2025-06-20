@@ -112,9 +112,6 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 			'PhanUnusedVariable',
 			'PhanUnusedVariableGlobal',
 			'PhanUnusedVariableValueOfForeachWithKey',
-			'PhanPossiblyInfiniteLoop',
-			'PhanSideEffectFreeWhileBody',
-			'PhanPossiblyInfiniteRecursionSameParams',
 		] )
 		->addPlugins( [
 			'PregRegexCheckerPlugin',

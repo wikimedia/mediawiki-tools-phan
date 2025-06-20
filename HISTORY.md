@@ -2,6 +2,7 @@
 
 ## 0.17.0 / ??????????
 * Drop support for PHP < 8.1
+* Re-enable infinite loop and recursion detection
 
 ## 0.16.0 / 2025-07-02
 * Use namespaced MediaWiki classes in `globals_type_map` (James D. Forrester)
