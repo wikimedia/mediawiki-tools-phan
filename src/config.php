@@ -60,6 +60,10 @@ $baseCfg
 		$VP . '/vendor',
 
 	] )
+	// We need to set this here, or phan will assume this to be the same as the
+	// target PHP version in projects where composer.json does not specify
+	// a minimum version.
+	->setMinimumPHPVersion( '8.1' )
 	->suppressIssueTypes(
 		// Deprecation warnings
 		'PhanDeprecatedFunction',
