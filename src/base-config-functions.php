@@ -24,9 +24,11 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 		'plugin_config' => [],
 		'warn_about_undocumented_throw_statements' => true,
 		'exception_classes_with_optional_throws_phpdoc' => [
-			'LogicException',
-			'RuntimeException',
-			'Error',
+			\LogicException::class,
+			\RuntimeException::class,
+			\Error::class,
+			\DOMException::class,
+			\Wikimedia\NormalizedException\NormalizedException::class,
 		],
 		'unused_variable_detection' => true,
 		// BC for repos not checking whether these are set
