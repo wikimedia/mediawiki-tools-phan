@@ -3,6 +3,7 @@
 ## 0.17.0 / ??????????
 * Drop support for PHP < 8.1
 * Re-enable infinite loop and recursion detection
+* Bump phan to 5.5.1 and taint-check to 7.0.0 (Daimona Eaytoy)
 
 ## 0.16.0 / 2025-07-02
 * Use namespaced MediaWiki classes in `globals_type_map` (James D. Forrester)
