@@ -1,9 +1,10 @@
 # MediaWiki-Phan-Config release history #
 
-## 0.17.0 / ??????????
-* Drop support for PHP < 8.1
-* Re-enable infinite loop and recursion detection
+## 0.17.0 / 2025-08-07
+* Drop support for PHP < 8.1 (Daimona Eaytoy)
+* Re-enable infinite loop and recursion detection (Daimona Eaytoy)
 * Bump phan to 5.5.1 and taint-check to 7.0.0 (Daimona Eaytoy)
+* Document common unchecked exceptions: `DOMException` and `NormalizedException` (Bartosz Dziewoński)
 
 ## 0.16.0 / 2025-07-02
 * Use namespaced MediaWiki classes in `globals_type_map` (James D. Forrester)
