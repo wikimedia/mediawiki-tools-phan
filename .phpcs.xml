@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ruleset>
-	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
-		<exclude name="MediaWiki.NamingConventions.PrefixedGlobalFunctions.allowedPrefix" />
+	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki" />
+	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
+		<properties>
+			<property name="allowedPrefixes[]" value="" />
+		</properties>
 	</rule>
+
 	<file>.</file>
 	<arg name="encoding" value="UTF-8"/>
 	<arg name="extensions" value="php"/>
