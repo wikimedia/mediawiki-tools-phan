@@ -2,19 +2,22 @@
 <phpunit
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	colors="true"
-	convertErrorsToExceptions="true"
-	convertNoticesToExceptions="true"
-	convertWarningsToExceptions="true"
-	backupStaticAttributes="true"
+	backupStaticProperties="true"
+	displayDetailsOnTestsThatTriggerDeprecations="true"
+	displayDetailsOnTestsThatTriggerErrors="true"
+	displayDetailsOnTestsThatTriggerNotices="true"
+	displayDetailsOnTestsThatTriggerWarnings="true"
+	displayDetailsOnPhpunitDeprecations="true"
+	requireCoverageMetadata="true"
 	beStrictAboutTestsThatDoNotTestAnything="true"
 	beStrictAboutOutputDuringTests="true"
-	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
 	bootstrap="tests/bootstrap.php">
-	<coverage includeUncoveredFiles="true">
+	<source>
 		<include>
 			<directory suffix=".php">./src</directory>
 		</include>
-	</coverage>
+	</source>
 	<testsuites>
 		<testsuite name="MediaWikiPhanConfig Tests">
 			<directory>./tests</directory>
