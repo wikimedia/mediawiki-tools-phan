@@ -1,64 +1,48 @@
 <?php
 
 // phpcs:disable MediaWiki.NamingConventions.ValidGlobalName
+// phpcs:disable MediaWiki.Commenting.MissingCovers.MissingCovers -- T363064
 
+use Phan\AST\ASTReverter;
+use Phan\AST\PhanAnnotationAdder;
 use Phan\CLIBuilder;
 use Phan\CodeBase;
 use Phan\Config;
 use Phan\Language\Type;
+use Phan\Language\Type\LiteralFloatType;
+use Phan\Language\Type\LiteralIntType;
+use Phan\Language\Type\LiteralStringType;
+use Phan\Language\UnionType;
 use Phan\Output\Printer\PlainTextPrinter;
 use Phan\Phan;
 use Phan\Plugin\ConfigPluginSet;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\ExcludeStaticPropertyFromBackup;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 /**
  * Taken from taint-check's SecurityCheckTest
- * @coversNothing
+ *
+ * List of excluded static properties is taken from phan's BaseTest class
  */
+#[CoversNothing]
+#[ExcludeStaticPropertyFromBackup( PhanAnnotationAdder::class, 'closures_for_kind' )]
+#[ExcludeStaticPropertyFromBackup( ASTReverter::class, 'closure_map' )]
+#[ExcludeStaticPropertyFromBackup( ASTReverter::class, 'noop' )]
+#[ExcludeStaticPropertyFromBackup( Type::class, 'canonical_object_map' )]
+#[ExcludeStaticPropertyFromBackup( Type::class, 'internal_fn_cache' )]
+#[ExcludeStaticPropertyFromBackup( LiteralFloatType::class, 'nullable_float_type' )]
+#[ExcludeStaticPropertyFromBackup( LiteralFloatType::class, 'non_nullable_float_type' )]
+#[ExcludeStaticPropertyFromBackup( LiteralIntType::class, 'nullable_int_type' )]
+#[ExcludeStaticPropertyFromBackup( LiteralIntType::class, 'non_nullable_int_type' )]
+#[ExcludeStaticPropertyFromBackup( LiteralStringType::class, 'nullable_string_type' )]
+#[ExcludeStaticPropertyFromBackup( LiteralStringType::class, 'non_nullable_string_type' )]
+#[ExcludeStaticPropertyFromBackup( UnionType::class, 'empty_instance' )]
+#[ExcludeStaticPropertyFromBackup( SecurityCheckPlugin::class, 'pluginInstance' )]
+#[ExcludeStaticPropertyFromBackup( ConfigPluginSet::class, 'plugin_instances_cache' )]
 class PluginTest extends TestCase {
 	private ?CodeBase $codeBase = null;
-
-	/**
-	 * Taken from phan's BaseTest class
-	 * @inheritDoc
-	 */
-	protected $backupStaticAttributesExcludeList = [
-		'Phan\AST\PhanAnnotationAdder' => [
-			'closures_for_kind',
-		],
-		'Phan\AST\ASTReverter' => [
-			'closure_map',
-			'noop',
-		],
-		'Phan\Language\Type' => [
-			'canonical_object_map',
-			'internal_fn_cache',
-		],
-		'Phan\Language\Type\LiteralFloatType' => [
-			'nullable_float_type',
-			'non_nullable_float_type',
-		],
-		'Phan\Language\Type\LiteralIntType' => [
-			'nullable_int_type',
-			'non_nullable_int_type',
-		],
-		'Phan\Language\Type\LiteralStringType' => [
-			'nullable_string_type',
-			'non_nullable_string_type',
-		],
-		'Phan\Language\UnionType' => [
-			'empty_instance',
-		],
-		'SecurityCheckPlugin' => [
-			'pluginInstance'
-		],
-		// Back this up to avoid loading plugins multiple times (which is slow, and most importantly fails because
-		// the class would be re-declared every time).
-		'Phan\Plugin\ConfigPluginSet' => [
-			'plugin_instances_cache'
-		]
-	];
 
 	/**
 	 * Copied from phan's {@see \Phan\Tests\CodeBaseAwareTest}
