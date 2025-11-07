@@ -1,5 +1,8 @@
 # MediaWiki-Phan-Config release history #
 
+## 0.18.0 / ??????????
+* Bump phan to 5.5.2 and taint-check to 8.0.0
+
 ## 0.17.0 / 2025-08-07
 * Drop support for PHP < 8.1 (Daimona Eaytoy)
 * Re-enable infinite loop and recursion detection (Daimona Eaytoy)
