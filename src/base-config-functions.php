@@ -31,7 +31,6 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 			\DOMException::class,
 			\Wikimedia\NormalizedException\NormalizedException::class,
 		],
-		'unused_variable_detection' => true,
 		// BC for repos not checking whether these are set
 		'file_list' => [],
 		'exclude_file_list' => [],
@@ -68,7 +67,8 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 		->allowMissingProperties( false )
 		->allowNullCastsAsAnyType( false )
 		->allowScalarImplicitCasts( false )
-		->enableDeadCodeDetection( false )
+		// Note, this implies unused_variable_detection
+		->enableDeadCodeDetection( true )
 		->shouldDeadCodeDetectionPreferFalseNegatives( true )
 		// TODO Enable by default
 		->setProgressBarMode( ConfigBuilder::PROGRESS_BAR_DISABLED )
@@ -100,9 +100,10 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 			// Would probably have many false positives
 			'PhanPluginMixedKeyNoKey',
 
-			// Too many false positives. Redundant variable detection is enabled for T396815 (non-capturing `catch`)
-			// and other issues with low false positive rates.
-			// Intentionally enabled, as of phan 5.4.6: PhanUnusedPrivateMethodParameter, PhanUnusedVariableStatic,
+			// Issues from unused variable detection with too many false positives. For variables in particular, we
+			// would need a way to annotate RAII classes, see e.g. plugin attempt in
+			// Id87c4a437c0f9144fb53a576af16fc9cb23baed1.
+			// Intentionally enabled, as of phan 6.0.5: PhanUnusedPrivateMethodParameter, PhanUnusedVariableStatic,
 			// PhanUnusedClosureUseVariable, PhanUnusedVariableCaughtException
 			'PhanUnusedPublicMethodParameter',
 			'PhanUnusedPublicNoOverrideMethodParameter',
@@ -115,6 +116,25 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 			'PhanUnusedVariable',
 			'PhanUnusedVariableGlobal',
 			'PhanUnusedVariableValueOfForeachWithKey',
+
+			// Issues from dead code detection with too many false positives. For classes, constants, functions,
+			// and public/protected members, it'll be hard to lower the rate.
+			// Intentionally enabled, as of phan 6.0.5: PhanReadOnlyPrivateProperty, PhanWriteOnlyPrivateProperty,
+			// PhanUnreferencedPrivateProperty, PhanReadOnlyPHPDocProperty, PhanUnreferencedPrivateClassConstant,
+			// PhanUnreferencedPrivateMethod
+			'PhanUnreferencedClass',
+			'PhanReadOnlyPublicProperty',
+			'PhanWriteOnlyPublicProperty',
+			'PhanReadOnlyProtectedProperty',
+			'PhanWriteOnlyProtectedProperty',
+			'PhanUnreferencedPublicClassConstant',
+			'PhanUnreferencedProtectedClassConstant',
+			'PhanUnreferencedPublicMethod',
+			'PhanUnreferencedPublicProperty',
+			'PhanUnreferencedProtectedMethod',
+			'PhanUnreferencedProtectedProperty',
+			'PhanUnreferencedConstant',
+			'PhanUnreferencedFunction',
 		] )
 		->addPlugins( [
 			'PregRegexCheckerPlugin',
