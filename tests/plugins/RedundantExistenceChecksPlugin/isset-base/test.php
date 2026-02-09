@@ -39,8 +39,8 @@ class TestClass {
 	private static ?int $intOrNullStaticProp = null;
 
 	function testGood() {
-		isset( $this->doesNotExist );// Note: phan will emit PhanUndeclaredProperty on its own here
-		isset( self::$doesNotExistStatic );// Note: phan will emit PhanUndeclaredStaticProperty on its own here
+		isset( $this->doesNotExist );
+		isset( self::$doesNotExistStatic );
 	}
 
 	function testBad() {
