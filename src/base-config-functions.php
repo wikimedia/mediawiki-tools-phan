@@ -48,13 +48,15 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 				'php-parallel-lint/php-console-highlighter',
 				'php-parallel-lint/php-parallel-lint',
 				'mediawiki/mediawiki-codesniffer',
-				'microsoft/tolerant-php-parser',
+				'phan/tolerant-php-parser',
 				'phan/phan',
+				'phan/var_representation_polyfill',
 				'phpunit/php-code-coverage',
 				'squizlabs/php_codesniffer',
+				'phpcsstandards/phpcsextra',
+				'phpcsstandards/phpcsutils',
 				// Exclude stubs used in libraries
 				'[^/]+/[^/]+/\.phan',
-				'symfony/polyfill-php80',
 			] ) . ')' .
 			'|' .
 			// Also exclude tests folder from dependencies
