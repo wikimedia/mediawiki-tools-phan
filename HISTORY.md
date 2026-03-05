@@ -1,5 +1,8 @@
 # MediaWiki-Phan-Config release history #
 
+## UNRELEASED
+* Bump phan to 6.0.2 and taint-check to 9.1.0 (Daimona Eaytoy)
+
 ## 0.19.0 / 2026-02-09
 * (T406326) Bump phan to 6.0.1 and taint-check to 9.0.0 (James D. Forrester)
 
