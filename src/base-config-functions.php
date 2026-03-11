@@ -127,6 +127,7 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 			'DuplicateArrayKeyPlugin',
 			'UseReturnValuePlugin',
 			'AddNeverReturnTypePlugin',
+			'CaseMismatchPlugin',
 		] )
 		->addCustomPlugins( [
 			'RedundantExistenceChecksPlugin',
