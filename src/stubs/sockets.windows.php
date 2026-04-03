@@ -1,4 +1,5 @@
 <?php
+declare( strict_types = 1 );
 
 /**
  * php extension sockets under windows does not include some constants, make phan happy with a stub

@@ -1,5 +1,5 @@
 <?php
-
+declare( strict_types = 1 );
 // phpcs:disable MediaWiki.NamingConventions.ValidGlobalName
 // phpcs:disable MediaWiki.Commenting.MissingCovers.MissingCovers -- T363064
 

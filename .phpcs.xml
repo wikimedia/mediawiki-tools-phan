@@ -6,6 +6,7 @@
 			<property name="allowedPrefixes[]" value="" />
 		</properties>
 	</rule>
+	<rule ref="Generic.PHP.RequireStrictTypes" />
 
 	<file>.</file>
 	<arg name="encoding" value="UTF-8"/>
