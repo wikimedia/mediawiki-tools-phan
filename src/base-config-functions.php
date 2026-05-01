@@ -74,7 +74,7 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 		->setProgressBarMode( ConfigBuilder::PROGRESS_BAR_DISABLED )
 		->readClassAliases( true )
 		->enableRedundantConditionDetection( true )
-		->setTargetPHPVersion( '8.4' )
+		->setTargetPHPVersion( '8.5' )
 		->setSuppressedIssuesList( [
 			// Covered by codesniffer
 			'PhanUnreferencedUseNormal',
