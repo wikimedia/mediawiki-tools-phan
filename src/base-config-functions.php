@@ -139,6 +139,8 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 			'PhanUnreferencedProtectedProperty',
 			'PhanUnreferencedConstant',
 			'PhanUnreferencedFunction',
+			// TODO: re-enable when upstream https://github.com/phan/phan/issues/4572 is fixed
+			'PhanUnreferencedClosure',
 		] )
 		->addPlugins( [
 			'PregRegexCheckerPlugin',
