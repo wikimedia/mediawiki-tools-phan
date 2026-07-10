@@ -87,14 +87,12 @@ $baseCfg
 		'wgContLang' => '\\MediaWiki\\Language\\Language',
 		'wgParser' => '\\MediaWiki\\Parser\\Parser',
 		'wgTitle' => '\\MediaWiki\\Title\\Title',
-		'wgMemc' => '\\Wikimedia\ObjectCache\\BagOStuff',
+		'wgMemc' => '\\Wikimedia\\ObjectCache\\BagOStuff',
 		'wgUser' => '\\MediaWiki\\User\\User',
-		'wgConf' => file_exists( "$IP/includes/config/SiteConfiguration.php" )
-			? '\\MediaWiki\\Config\\SiteConfiguration' : '\\SiteConfiguration',
+		'wgConf' => '\\MediaWiki\\Config\\SiteConfiguration',
 		'wgLang' => '\\MediaWiki\\Language\\Language',
 		'wgOut' => '\\MediaWiki\\Output\\OutputPage',
-		'wgRequest' => file_exists( "$IP/includes/Request/WebRequest.php" )
-			? '\\MediaWiki\\Request\\WebRequest' : '\\WebRequest',
+		'wgRequest' => '\\MediaWiki\\Request\\WebRequest',
 	] )
 	->addExceptionClassesWithOptionalThrowsPHPDoc( [
 		'ErrorPageError',
