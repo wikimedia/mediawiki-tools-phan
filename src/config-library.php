@@ -31,12 +31,12 @@ $baseCfg = new ConfigBuilder();
 setBaseOptions( $DIR, $baseCfg );
 
 $baseCfg
-	->setDirectoryList( filterDirs( [
+	->setDirectoryList( [
 		'includes/',
 		'src/',
 		'.phan/stubs/',
 		'vendor/',
-	] ) )
+	], ConfigBuilder::SET_WITH_DIR_FILTER )
 	->setExcludedDirectoryList( [
 		'.phan/stubs/',
 		'vendor/',

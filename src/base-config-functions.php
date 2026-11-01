@@ -165,12 +165,3 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 		$configBuilder->addFiles( $curDir . '/stubs/sockets.windows.php' );
 	}
 }
-
-/**
- * Internal helper used to filter dirs. This is used so that we can include commonly-used dir
- * names without phan complaining about "directory not found". It should NOT be used in
- * repo-specific config files.
- */
-function filterDirs( array $dirs ): array {
-	return array_filter( $dirs, 'file_exists' );
-}

@@ -11,6 +11,14 @@ class ConfigBuilder {
 	public const PROGRESS_BAR_STANDARD = 1;
 	public const PROGRESS_BAR_LONG = 2;
 
+	public const SET_WITHOUT_FILTER = 0;
+	/**
+	 * @internal For use in this repo only
+	 * This is used so that the default config can include commonly-used dir
+	 * names without phan complaining about "directory not found".
+	 */
+	public const SET_WITH_DIR_FILTER = 1;
+
 	/** @var array */
 	private array $options = [];
 
@@ -84,9 +92,13 @@ class ConfigBuilder {
 
 	/**
 	 * @param array $list
+	 * @param int $filterOption For internal use only, self::SET_WITHOUT_FILTER or self::SET_WITH_DIR_FILTER
 	 * @return $this
 	 */
-	public function setDirectoryList( array $list ): self {
+	public function setDirectoryList( array $list, int $filterOption = self::SET_WITHOUT_FILTER ): self {
+		if ( $filterOption === self::SET_WITH_DIR_FILTER ) {
+			$list = $this->filterDirs( $list );
+		}
 		$this->options['directory_list'] = $list;
 		return $this;
 	}
@@ -345,5 +357,9 @@ class ConfigBuilder {
 
 	protected function getTaintCheckPluginName(): string {
 		return 'GenericSecurityCheckPlugin';
+	}
+
+	private function filterDirs( array $dirs ): array {
+		return array_filter( $dirs, file_exists( ... ) );
 	}
 }

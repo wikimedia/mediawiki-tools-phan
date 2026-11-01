@@ -42,7 +42,7 @@ $baseCfg = new MediaWikiConfigBuilder( $IP );
 setBaseOptions( $DIR, $baseCfg );
 
 $baseCfg
-	->setDirectoryList( filterDirs( [
+	->setDirectoryList( [
 		'includes/',
 		'src/',
 		'maintenance/',
@@ -52,7 +52,7 @@ $baseCfg
 		$IP . '/maintenance',
 		$IP . '/.phan/stubs/',
 		$VP . '/vendor',
-	] ) )
+	], ConfigBuilder::SET_WITH_DIR_FILTER )
 	->setExcludedDirectoryList( [
 		'.phan/stubs/',
 		$IP . '/includes',
@@ -60,7 +60,6 @@ $baseCfg
 		$IP . '/maintenance',
 		$IP . '/.phan/stubs/',
 		$VP . '/vendor',
-
 	] )
 	// We need to set this here, or phan will assume this to be the same as the
 	// target PHP version in projects where composer.json does not specify
