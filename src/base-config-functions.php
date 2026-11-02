@@ -3,7 +3,7 @@ declare( strict_types = 1 );
 
 use MediaWikiPhanConfig\ConfigBuilder;
 
-function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
+function setBaseOptions( ConfigBuilder $configBuilder ): void {
 	// TODO: Do we need to explicitly set these? If so, move to ConfigBuilder. Remove otherwise.
 	$baseOptions = [
 		'backward_compatibility_checks' => false,
@@ -38,7 +38,7 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 	$configBuilder->setRawOptions( $baseOptions );
 
 	$configBuilder
-		->excludeDirectories( $curDir . '/stubs' )
+		->excludeDirectories( __DIR__ . '/stubs' )
 		->setExcludeFileRegex(
 			'@vendor/(' .
 			'(' . implode( '|', [
@@ -162,6 +162,6 @@ function setBaseOptions( string $curDir, ConfigBuilder $configBuilder ): void {
 		] );
 
 	if ( !defined( 'MSG_EOR' ) ) {
-		$configBuilder->addFiles( $curDir . '/stubs/sockets.windows.php' );
+		$configBuilder->addFiles( __DIR__ . '/stubs/sockets.windows.php' );
 	}
 }

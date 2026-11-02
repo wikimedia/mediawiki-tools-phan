@@ -24,22 +24,17 @@ use MediaWikiPhanConfig\MediaWikiConfigBuilder;
 
 require_once __DIR__ . '/base-config-functions.php';
 
-// Replace \\ by / for windows users to let exclude work correctly
-$DIR = str_replace( '\\', '/', __DIR__ );
-
 // TODO: Use \Phan\Config::projectPath()
 $IP = getenv( 'MW_INSTALL_PATH' ) !== false
-	// Replace \\ by / for windows users to let exclude work correctly
-	? str_replace( '\\', '/', getenv( 'MW_INSTALL_PATH' ) )
+	? getenv( 'MW_INSTALL_PATH' )
 	: '../..';
 
 $VP = getenv( 'MW_VENDOR_PATH' ) !== false
-	// Replace \\ by / for windows users to let exclude work correctly
-	? str_replace( '\\', '/', getenv( 'MW_VENDOR_PATH' ) )
+	? getenv( 'MW_VENDOR_PATH' )
 	: $IP;
 
 $baseCfg = new MediaWikiConfigBuilder( $IP );
-setBaseOptions( $DIR, $baseCfg );
+setBaseOptions( $baseCfg );
 
 $baseCfg
 	->setDirectoryList( [
@@ -52,7 +47,7 @@ $baseCfg
 		$IP . '/maintenance',
 		$IP . '/.phan/stubs/',
 		$VP . '/vendor',
-	], ConfigBuilder::SET_WITH_DIR_FILTER )
+	], MediaWikiConfigBuilder::SET_WITH_DIR_FILTER )
 	->setExcludedDirectoryList( [
 		'.phan/stubs/',
 		$IP . '/includes',
@@ -100,7 +95,7 @@ $baseCfg
 		// TODO: Remove when the class is dropped (T86704)
 		'MWException',
 	] )
-	->enableTaintCheck( $DIR, $VP );
+	->enableTaintCheck( $VP );
 
 // BC: We're not ready to use the ConfigBuilder everywhere
 return $baseCfg->make();

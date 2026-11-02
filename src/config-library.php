@@ -24,11 +24,8 @@ use MediaWikiPhanConfig\ConfigBuilder;
 
 require_once __DIR__ . '/base-config-functions.php';
 
-// Replace \\ by / for windows users to let exclude work correctly
-$DIR = str_replace( '\\', '/', __DIR__ );
-
 $baseCfg = new ConfigBuilder();
-setBaseOptions( $DIR, $baseCfg );
+setBaseOptions( $baseCfg );
 
 $baseCfg
 	->setDirectoryList( [
@@ -41,7 +38,7 @@ $baseCfg
 		'.phan/stubs/',
 		'vendor/',
 	] )
-	->enableTaintCheck( $DIR, 'vendor/' );
+	->enableTaintCheck( 'vendor/' );
 
 // BC: We're not ready to use the ConfigBuilder everywhere
 return $baseCfg->make();

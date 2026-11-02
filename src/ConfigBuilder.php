@@ -325,16 +325,12 @@ class ConfigBuilder {
 	 * @internal
 	 * This should only be used by the config file in this repo.
 	 *
-	 * @param string $curDir
 	 * @param string $vendorPath
 	 * @return $this
 	 */
-	public function enableTaintCheck(
-		string $curDir,
-		string $vendorPath
-	): self {
+	public function enableTaintCheck( string $vendorPath ): self {
 		$taintCheckPluginName = $this->getTaintCheckPluginName();
-		$taintCheckPath = $curDir . "/../../phan-taint-check-plugin/$taintCheckPluginName.php";
+		$taintCheckPath = __DIR__ . "/../../phan-taint-check-plugin/$taintCheckPluginName.php";
 		if ( !file_exists( $taintCheckPath ) ) {
 			$taintCheckPath =
 				"$vendorPath/vendor/mediawiki/phan-taint-check-plugin/$taintCheckPluginName.php";
